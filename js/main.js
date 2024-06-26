@@ -1,16 +1,7 @@
+import { paginationRockets, setupPagination } from "./components/paginación.js";
 
-import { getAllRocketsId } from "./modules/rocketsInfo.js";
-
-let rocketsId = await getAllRocketsId();
-
-console.log(rocketsId)
-
-let id = rocketsId.map(rocket => rocket.id);
-console.log(id);
-
-let html = '';
-for(let i = 0; i < id.length; i++) {
-    let pag = i + 1;
-    html += `<a href="#${pag}" data-id="${id[i]}" class="">${pag}</a>`;
-}
-document.querySelector("#paginacion").innerHTML = html;
+document.addEventListener("DOMContentLoaded", async () => {
+    document.querySelector("#paginacion").innerHTML = await paginationRockets();    
+    
+    setupPagination();
+});

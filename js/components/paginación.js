@@ -1,16 +1,23 @@
+import { getAllRocketsId, getRocketNameById } from "../modules/rocketsInfo.js";
+import { nameRocket } from "./rockets.js";
 
-import { getAllRocketsId } from "./modules/rocketsInfo.js";
-
-let rocketsId = await getAllRocketsId();
-
-console.log(rocketsId)
-
-let id = rocketsId.map(rocket => rocket.id);
-console.log(id);
-
-let html = '';
-for(let i = 0; i < id.length; i++) {
-    let pag = i + 1;
-    html += `<a href="#" data-id="${id[i]}" >${pag}</a>`;
+export const paginationRockets = async () => {
+    const rockets = await getAllRocketsId();
+    const html = rockets.map((rocket, index) => {
+        const pag = index + 1;
+        return `<a href="#" data-id="${rocket.id}">${pag}</a>`;
+    });
+    
+    return html.join("");
 }
-document.querySelector("#paginacion").innerHTML = html;
+
+export const setupPagination = () => {
+    document.querySelector("#paginacion").addEventListener("click", async (e) => {
+        e.preventDefault();
+        const id = e.target.dataset.id;
+
+        const rocketName = await getRocketNameById(id)
+
+        await nameRocket(rocketName);
+    });
+}
