@@ -41,7 +41,7 @@ body {
 
 /* Header */
 .header__title {
-    color: var(--color--five);
+    color: var(--color-4);
     height: 10vh;
     font-size: 2.3rem;
     display: flex;
@@ -84,11 +84,25 @@ body {
 
 .description__item {
     height: 75vh;
-    color: var(--color--five);
+    color: var(--color-4);
     margin-left: 15px
-    
 }
-
+.description__item h3 {
+    color: var(--color-3);
+}
+.info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+}
+.info img {
+    width: 60px;
+    height: 60px;
+}
+.info__item h4 {
+    color: var(--color-3);
+}
 .rocket__image{
     display: flex;
     justify-content: center;   
@@ -106,7 +120,7 @@ body {
     margin: 10px;
     font-weight: bold;
     background-color: var(--color-1);
-    border: 1px solid var(--color--two);
+    border: 1px solid var(--color-2);
     border-radius: 10px
 }
 
@@ -138,7 +152,7 @@ h3{
 }
 
 .stage_1, .stage_2{
-    border: 1px solid var(--color--two);
+    border: 1px solid var(--color-2);
     border-radius: 200px 0px 200px 200px;
     margin-bottom: 10px;
     height: 80px;
@@ -192,13 +206,13 @@ h3{
 }
 
 .description__container div:last-child h3 {
-    color: var(--color--five);
+    color: var(--color-4);
 }
 
 .description__container div:last-child small,
 .description__container div:last-child a {
     margin-top: 25px;
-    color: var(--color--two);
+    color: var(--color-2);
     text-decoration: none;
 }
 
@@ -231,7 +245,7 @@ h3{
 }
 
 .item__progress__bar {
-    color: var(--color--five);
+    color: var(--color-4);
     display: flex;
     justify-content: center;
     text-align: center;
@@ -243,7 +257,7 @@ h3{
         closest-side, 
         #1d1f38 85%, 
         transparent 85% 100%), 
-        conic-gradient(var(--color--three) 
+        conic-gradient(var(--color-3) 
         80%, 
         transparent 0);  
     transform: rotate(180deg); 
@@ -295,12 +309,12 @@ h3{
     text-transform: uppercase;
     padding: 0 25px;
     margin-bottom: 5px;
-    color: var(--color--two);
+    color: var(--color-2);
 }
 .information__table__1 hr{
     margin: 0 auto;
     width: 90%;
-    border-color: var(--color--two);
+    border-color: var(--color-2);
 }
 .table__container__1{
     height: 160px;
@@ -313,10 +327,10 @@ h3{
     justify-content: space-between !important;
 }
 .table__container__1 div span{
-    color: var(--color--two);
+    color: var(--color-2);
 }
 .table__container__1 div strong{
-    color: var(--color--five);
+    color: var(--color-4);
 }
 .section__image {
     grid-area: colum__2;
@@ -370,12 +384,12 @@ h3{
     text-transform: uppercase;
     padding: 0 25px;
     margin-bottom: 5px;
-    color: var(--color--two);
+    color: var(--color-2);
 }
 .information__table__2 hr{
     margin: 0 auto;
     width: 90%;
-    border-color: var(--color--two);
+    border-color: var(--color-2);
 }
 .table__container__2{
     height: 160px;
@@ -388,10 +402,10 @@ h3{
     justify-content: space-between !important;
 }
 .table__container__2 div span{
-    color: var(--color--two);
+    color: var(--color-2);
 }
 .table__container__2 div strong{
-    color: var(--color--five);
+    color: var(--color-4);
 }
 
 /* Footer */
@@ -456,7 +470,7 @@ h3{
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--color--two);
+    color: var(--color-4);
 }
 .footer ul li span{
     font-size: 13px;
@@ -464,7 +478,7 @@ h3{
 
 .select{
     padding: 8px 0;
-    border-bottom: 4px solid var(--color--five) ;
+    border-bottom: 4px solid var(--color-4) ;
 }
 
 /* Tercera columna */
@@ -475,6 +489,9 @@ h3{
 .information__item {
     overflow-y: auto;
     height: 75vh;
+}
+.information__item img {
+    width: 100%;
 }
 
 .information__buttom {
@@ -500,7 +517,7 @@ h3{
 }
 
 .buttom__paginacion a {
-    color: var(--color--five);
+    color: var(--color-4);
     text-decoration: none;
     float: left;
     padding: 8px 16px;
@@ -508,7 +525,7 @@ h3{
 
 .buttom__paginacion a.activo {
     background-color: var(--color-1);
-    color: var(--color--five);
+    color: var(--color-4);
 }
 
 .buttom__paginacion a:hover:not(.activo) {
@@ -525,7 +542,7 @@ h3{
 
 .information__container div:first-child {
     width: 60%;
-    color: var(--color--five);
+    color: var(--color-4);
 }
 
 .information__container div:first-child progress {
@@ -533,14 +550,14 @@ h3{
 }
 
 .information__container div:last-child {
-    color: var(--color--two);
+    color: var(--color-2);
     width: 40%;
     display: flex;
     align-items: flex-end;
 }
 
 progress[value] {
-    --color: var(--color--three);
+    --color: var(--color-3);
     --background: var(--color-1--rgb);
     background: var(--background);
 }
@@ -586,7 +603,7 @@ progress[value]::-moz-progress-bar {
 
 .divCountry {
     display: flex;
-    color: var(--color--five);
+    color: var(--color-4);
     align-items: center;
     justify-content: center;
 }

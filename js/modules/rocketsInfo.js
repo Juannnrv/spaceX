@@ -39,5 +39,49 @@ export const getRocketNameById = async (id) => {
     
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    return docs.length > 0 ? docs[0].name : null;
+    return docs.length > 0 ? docs[0].name : "Not found";
 }
+
+// export const getRocketDescriptionById = async (id) => {
+//     const options = {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             "query": { 
+//                 "_id": id 
+//             },
+//             "options": {
+//                 "select": "description"
+//             }
+//         })
+//     };
+    
+//     const res = await fetch(apiUrl, options);
+//     const { docs } = await res.json();
+//     return docs.length > 0 ? docs[0].description : "Not found";
+// }
+
+export const getRocketMoreInfoById = async (id) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+              "_id": id
+            },
+            "options": {
+            "select": " cost_per_launch country wikipedia description"
+            }
+        })
+    };
+
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    console.log(docs);
+    return docs[0];
+}
+
