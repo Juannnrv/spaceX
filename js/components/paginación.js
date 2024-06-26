@@ -11,6 +11,6 @@ console.log(id);
 let html = '';
 for(let i = 0; i < id.length; i++) {
     let pag = i + 1;
-    html += `<a href="#${pag}" data-id="${id[i]}" class="">${pag}</a>`;
+    html += `<a href="#" data-id="${id[i]}" >${pag}</a>`;
 }
 document.querySelector("#paginacion").innerHTML = html;

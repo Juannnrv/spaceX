@@ -36,7 +36,7 @@ body {
 
 *::-webkit-scrollbar-thumb {
 
-    background-color: var(--color-1--rgba);
+    background-color: var(--color-2);
 }
 
 /* Header */
@@ -45,6 +45,8 @@ body {
     height: 10vh;
     font-size: 2.3rem;
     display: flex;
+    flex-direction: row;
+    margin-right: 105px;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
@@ -406,7 +408,7 @@ h3{
 }
 
 .footer i:hover{
-    color: var(--color-1--rgba);
+    color: var(--color-2);
 }
 
 .footer ul {
@@ -477,9 +479,20 @@ h3{
 
 .information__buttom {
     display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(42, 144, 139, 0.541);
+    border-radius: 80px;
+    margin-right: 13px;
+}
+
+.information__buttom {
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 110px;
+
 }
 
 .buttom__paginacion {
@@ -499,7 +512,7 @@ h3{
 }
 
 .buttom__paginacion a:hover:not(.activo) {
-    background-color: var(--color-1--rgba);
+    background-color: var(--color-2);
 }
 
 .information__container {

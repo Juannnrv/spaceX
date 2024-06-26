@@ -3,7 +3,8 @@
 
 :root{
     --color-1: rgb(42, 144, 107);
-    --color-1--rgba: #191b3f9e;
+    --color-1-rgba: rgba(42, 144, 139, 0.541);
+    --color-2: #191b3f9e;
     --color--two: #cfcfd1;
     --color--three: #298bfe;
     --color--four: #e52d2d;
