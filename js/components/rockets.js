@@ -80,7 +80,7 @@ export const payloadsRockets = async (infotable1) => {
     const informationTable1 = document.querySelector(".information__table__1");
 
     informationTable1.innerHTML = /*html*/`
-    <h3> Payloads </h3>
+    <h3> PAYLOADS </h3>
     <hr>
     <div class="table1">
         <div class="title">
@@ -107,7 +107,7 @@ export const enginesRockets = async (infotable2) => {
     console.log(infotable2);
 
     document.querySelector(".information__table__2").innerHTML = /*html*/`
-    <h3> Engines </h3>
+    <h3> ENGINES </h3>
     <hr>
     <div class="table2">
         <div class="engineInfo">
@@ -118,24 +118,27 @@ export const enginesRockets = async (infotable2) => {
             <p>Type</p>
             <span>${infotable2.type}</span>
         </div>
-        <div class="engineInfo">
+        ${infotable2.version ? /*html*/`
+            <div class="engineInfo">
             <p>Version</p>
             <span>${infotable2.version}</span>
-        </div>
+        </div>` : ''}
+        ${infotable2.layout ? /*html*/`
         <div class="engineInfo">
             <p>Layout</p>
             <span>${infotable2.layout}</span>
-        </div>
-        <div class="engineInfo">
+        </div>` : ''}
+        ${ infotable2.engine_loss_max ? /*html*/`
+            <div class="engineInfo">
             <p>Max. motor loss</p>
             <span>${infotable2.engine_loss_max}</span>
-        </div>
+        </div>`: ""}
         <div class="engineInfo">
             <p>Propellant 1</p>
             <span>${infotable2.propellant_1}</span>
         </div>
         <div class="engineInfo">
-            <p>Propellant 1</p>
+            <p>Propellant 2</p>
             <span>${infotable2.propellant_2}</span>
         </div>
         <div class="engineInfo">
