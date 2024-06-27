@@ -82,19 +82,20 @@ body {
     grid-area: nav__1;
 }
 
-.description__item {
-    height: 75vh;
+#description__item {
+    height: 89vh;
     color: var(--color-4);
     margin-left: 15px;
-    /* background-color: var(--color-2);
+    background-color: var(--color-2); 
     border-radius: 0 50px 50px 0;
-    padding: 20px;  */
+    padding: 18px;
+    border: var(--color-1) 5px solid;
 }
-.description__item h3 {
+#description__item h3 {
     color: var(--color-3);
     margin-bottom: 10px;
 }
-.description__item p {
+#description__item p {
     /* font-family: "RobotoMono-Regular", sans-serif; */
     letter-spacing: 2px;
     font-weight: bold;
@@ -322,15 +323,46 @@ h3{
     justify-content: center;
     align-items: center;
 }
-
+#first_stage {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 50px;
+    background-color: var(--color-2);
+    padding: 10px;
+    border: var(--color-1) 5px solid;
+}
+#first_stage h3 {
+    color: var(--color-4);
+    margin-bottom: 5px;
+}
+#first_stage hr {
+    margin: 0 auto;
+    width: 100%;
+    height: 5px;
+    background-color: var(--color-1);
+    border: var(--color-1);
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+.stage__info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.stage__info p {
+    color: var(--color-3);
+}
+.stage__info span {
+    color: var(--color-4);
+}
 .information__table__1 {
     width: 85%;
     margin: 10px auto;
     grid-area: table__colum__1;
     display: flex;
     flex-direction: column;
-    border: 5px solid var(--color-3);
-    background: rgba(42, 144, 139, 0.619);
+    background-color: var(--color-2);
+    border: var(--color-1) 5px solid;
     padding: 10px;
 }
 .table1 {
@@ -346,8 +378,8 @@ h3{
     margin: 0 auto;
     width: 100%;
     height: 5px;
-    background-color: var(--color-3);
-    border-color: var(--color-1);
+    background-color: var(--color-1);
+    border: var(--color-1);
     border-collapse: collapse;
     margin-bottom: 5px;
 }
@@ -441,6 +473,29 @@ h3{
     justify-content: center;
     align-items: center;
 }
+
+#second-stage {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 50px;
+    background: rgba(42, 144, 139, 0.619);
+    padding: 10px;
+    border: var(--color-3) 5px solid;
+}
+#second-stage h3 {
+    color: var(--color-4);
+    margin-bottom: 5px;
+}
+#second-stage hr {
+    margin: 0 auto;
+    width: 100%;
+    height: 5px;
+    background-color: var(--color-3);
+    border: var(--color-1);
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+
 .information__table__2 {
     width: 85%;
     margin: 10px auto;

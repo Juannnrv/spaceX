@@ -102,9 +102,63 @@ export const payloadsRockets = async (infotable1) => {
     `;
 };
 
+// Stages
+export const RocketsStages = async (Stages) => {
+    console.log(Stages);
+
+    let first = Stages.first_stage;
+    let second = Stages.second_stage;
+
+    document.querySelector("#first_stage").innerHTML = /*html*/`
+    <h3> FIRST STAGE </h3>
+    <hr>
+    <div class="stage">
+        <div class="stage__info">
+            <p>Reusable</p>
+            <span>${first.reusable === true ? "Yes" : "No" }</span>
+        </div>
+        <div class="stage__info">
+            <p>Engines</p>
+            <span>${first.engines}</span>
+        </div>
+        <div class="stage__info">
+            <p>Fuel amount</p>
+            <span>${first.fuel_amount_tons} tons</span>
+        </div>
+        ${first.burn_time_sec ? /*html*/`
+            <div class="stage__info">
+            <p>Burn time</p>
+            <span>${first.burn_time_sec} sec</span>
+        </div>` : ''}
+    `;
+
+    document.querySelector("#second-stage").innerHTML = /*html*/`
+    <h3> SECOND STAGE </h3>
+    <hr>
+    <div class="stage">
+        <div class="stage__info">
+            <p>Reusable</p>
+            <span>${second.reusable === true ? "Yes" : "No" }</span>
+        </div>
+        <div class="stage__info">
+            <p>Engines</p>
+            <span>${second.engines}</span>
+        </div>
+        <div class="stage__info">
+            <p>Fuel amount</p>
+            <span>${second.fuel_amount_tons} tons</span>
+        </div>
+        ${second.burn_time_sec ? /*html*/`
+            <div class="stage__info">
+            <p>Burn time</p>
+            <span>${second.burn_time_sec} sec</span>
+        </div>` : ''}
+    `;
+}
+
 // Tabla 2 engines
 export const enginesRockets = async (infotable2) => {
-    console.log(infotable2);
+    // console.log(infotable2);
 
     document.querySelector(".information__table__2").innerHTML = /*html*/`
     <h3> ENGINES </h3>

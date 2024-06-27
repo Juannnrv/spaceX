@@ -105,3 +105,23 @@ export const getRocketEngines = async (id) => {
     return docs[0].engines;
 }
 
+export const getRocketsStage = async (id) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+              "_id": id
+            },
+            "options": {
+              "select": "first_stage.reusable first_stage.engines first_stage.fuel_amount_tons first_stage.burn_time_sec second_stage.reusable second_stage.engines second_stage.fuel_amount_tons second_stage.burn_time_sec"
+            }
+          })
+    };
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    // console.log(docs[0]);
+    return docs[0];
+}
