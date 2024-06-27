@@ -329,7 +329,7 @@ h3{
     grid-area: table__colum__1;
     display: flex;
     flex-direction: column;
-    border: 5px solid var(--color-1-rgba);
+    border: 5px solid var(--color-1);
     padding: 10px;
 }
 .table1 {
@@ -378,7 +378,9 @@ h3{
 .payload__weight {
     display: flex;
     flex-direction: column;
-}olor: var(--color-4);
+}
+.payload__weight spam {
+    color: var(--color-4);
 }
 .table__container__1{
     height: 160px;
@@ -430,7 +432,7 @@ h3{
     display: flex;
     overflow-x: auto;
     gap: 10px;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 
 .section__information__3 div:first-child>.carousel__item {
@@ -443,32 +445,39 @@ h3{
     width: 85%;
     margin: 10px auto;
     grid-area: table__colum__2;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid var(--color-1);
+    padding: 10px;
 }
 .information__table__2 h3{
     text-transform: uppercase;
     padding: 0 25px;
     margin-bottom: 5px;
-    color: var(--color-2);
+    color: var(--color-4);
 }
 .information__table__2 hr{
     margin: 0 auto;
-    width: 90%;
-    border-color: var(--color-2);
+    width: 100%;
+    height: 5px;
+    background-color: var(--color-1);
+    border-color: var(--color-1);
+    border-collapse: collapse;
+    margin-bottom: 5px;
 }
-.table__container__2{
-    height: 160px;
-    overflow-y: auto;
-    padding: 0 25px;
+.table2 {
+    overflow-y: scroll;
+    height: 21vh;
 }
-.table__container__2 div{
-    margin-top: 10px;
+.engineInfo {
     display: flex;
-    justify-content: space-between !important;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
-.table__container__2 div span{
-    color: var(--color-2);
+.engineInfo p {
+    color: var(--color-3);
 }
-.table__container__2 div strong{
+.engineInfo span {
     color: var(--color-4);
 }
 

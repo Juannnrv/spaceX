@@ -66,7 +66,7 @@ export const moreInfoRocket = async (moreInfo) => {
     ` ;
 }
 
-// Tabla 1
+// Tabla 1 payloads
 export const payloadsRockets = async (infotable1) => {
     // console.log(infotable1);
     let info = infotable1.map(payload => ({
@@ -101,3 +101,47 @@ export const payloadsRockets = async (infotable1) => {
     </div>
     `;
 };
+
+// Tabla 2 engines
+export const enginesRockets = async (infotable2) => {
+    console.log(infotable2);
+
+    document.querySelector(".information__table__2").innerHTML = /*html*/`
+    <h3> Engines </h3>
+    <hr>
+    <div class="table2">
+        <div class="engineInfo">
+            <p>Number</p>
+            <span>${infotable2.number}</span>
+        </div>
+        <div class="engineInfo">
+            <p>Type</p>
+            <span>${infotable2.type}</span>
+        </div>
+        <div class="engineInfo">
+            <p>Version</p>
+            <span>${infotable2.version}</span>
+        </div>
+        <div class="engineInfo">
+            <p>Layout</p>
+            <span>${infotable2.layout}</span>
+        </div>
+        <div class="engineInfo">
+            <p>Max. motor loss</p>
+            <span>${infotable2.engine_loss_max}</span>
+        </div>
+        <div class="engineInfo">
+            <p>Propellant 1</p>
+            <span>${infotable2.propellant_1}</span>
+        </div>
+        <div class="engineInfo">
+            <p>Propellant 1</p>
+            <span>${infotable2.propellant_2}</span>
+        </div>
+        <div class="engineInfo">
+            <p>thrust to weight</p>
+            <span>${infotable2.thrust_to_weight}</span>
+        </div>
+    </div>
+    `;
+}

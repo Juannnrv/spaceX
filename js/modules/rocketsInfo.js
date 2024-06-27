@@ -81,7 +81,27 @@ export const getRocketInfoTable1 = async (id) => {
     };
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    console.log(docs[0].payload_weights)
+    // console.log(docs[0].payload_weights)
     return docs[0].payload_weights;
+}
+
+export const getRocketEngines = async (id) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+                "_id": id
+            },
+            "options": {
+                "select": "engines.number engines.type engines.version engines.layout engines.engine_loss_max engines.propellant_1 engines.propellant_2 engines.thrust_to_weight"
+            }
+        })
+    };
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    return docs[0].engines;
 }
 
