@@ -60,7 +60,7 @@ export const getRocketMoreInfoById = async (id) => {
 
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    console.log(docs);
+    // console.log(docs);
     return docs[0];
 }
 
@@ -68,16 +68,20 @@ export const getRocketInfoTable1 = async (id) => {
     const options = {
         method: 'POST',
         headers: {
-            "Content_Type": "application/json"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             "query": {
                 "_id": id,
             },
             "options": {
-                "select": ""
+                "select": "payload_weights.name payload_weights.kg payload_weights.lb"
             }
         })
-    }
+    };
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    console.log(docs[0].payload_weights)
+    return docs[0].payload_weights;
 }
 

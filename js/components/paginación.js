@@ -1,6 +1,5 @@
-import { getAllRocketsId,  getRocketMoreInfoById, getRocketNameById } from "../modules/rocketsInfo.js";
-import { moreInfoRocket, nameRocket } from "./rockets.js";
-
+import { getAllRocketsId,  getRocketInfoTable1,  getRocketMoreInfoById, getRocketNameById } from "../modules/rocketsInfo.js";
+import { moreInfoRocket, nameRocket, payloadsRockets } from "./rockets.js";
 
 export const paginationRockets = async () => {
     const rockets = await getAllRocketsId();
@@ -20,8 +19,10 @@ export const setupPagination = () => {
         // Rockets
         const rocketName = await getRocketNameById(id)
         const rocketMoreInfo = await getRocketMoreInfoById(id);
+        const infotable1 = await getRocketInfoTable1(id);
 
         await nameRocket(rocketName);
         await moreInfoRocket(rocketMoreInfo);
+        await payloadsRockets(infotable1);
     });
 }

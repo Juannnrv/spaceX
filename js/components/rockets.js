@@ -3,8 +3,9 @@ export const nameRocket = async (name) => {
     document.querySelector("#header__title").innerHTML = name;
 }
 
+// Columna izquierda
 export const moreInfoRocket = async (moreInfo) => {
-    console.log(moreInfo);
+    // console.log(moreInfo);
     let flagSrc;
         if (moreInfo.country === "United States") {
             flagSrc = "https://cdn3d.iconscout.com/3d/premium/thumb/united-states-flag-pole-5082845-4234133.png";
@@ -64,3 +65,39 @@ export const moreInfoRocket = async (moreInfo) => {
     </div>
     ` ;
 }
+
+// Tabla 1
+export const payloadsRockets = async (infotable1) => {
+    // console.log(infotable1);
+    let info = infotable1.map(payload => ({
+        name: payload.name,
+        kg: payload.kg,
+        lb: payload.lb
+    }));
+    
+    // console.log(info);
+
+    const informationTable1 = document.querySelector(".information__table__1");
+
+    informationTable1.innerHTML = /*html*/`
+    <h3> Payloads </h3>
+    <hr>
+    <div class="table1">
+        <div class="title">
+            <span>Name</span>
+            <span>KG y LB</span>
+        </div>
+        ${
+            info.map(payload => /*html*/`
+                <div class="payload_info">
+                    <span>${payload.name}</span>
+                    <div class="payload__weight">
+                        <p>${payload.kg}   kg</p>
+                        <p>${payload.lb}   lb</p>
+                    </div>
+                </div>
+            `).join('')
+        }
+    </div>
+    `;
+};
