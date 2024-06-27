@@ -19,12 +19,9 @@ export const setupPagination = () => {
 
         // Rockets
         const rocketName = await getRocketNameById(id)
-        // const rocketDescription = await getRocketDescriptionById(id);
         const rocketMoreInfo = await getRocketMoreInfoById(id);
-        console.log(rocketMoreInfo);
 
         await nameRocket(rocketName);
-        // await descriptionRocket(rocketDescription);
         await moreInfoRocket(rocketMoreInfo);
     });
 }

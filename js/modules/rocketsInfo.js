@@ -42,27 +42,6 @@ export const getRocketNameById = async (id) => {
     return docs.length > 0 ? docs[0].name : "Not found";
 }
 
-// export const getRocketDescriptionById = async (id) => {
-//     const options = {
-//         method: 'POST',
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             "query": { 
-//                 "_id": id 
-//             },
-//             "options": {
-//                 "select": "description"
-//             }
-//         })
-//     };
-    
-//     const res = await fetch(apiUrl, options);
-//     const { docs } = await res.json();
-//     return docs.length > 0 ? docs[0].description : "Not found";
-// }
-
 export const getRocketMoreInfoById = async (id) => {
     const options = {
         method: 'POST',
@@ -74,7 +53,7 @@ export const getRocketMoreInfoById = async (id) => {
               "_id": id
             },
             "options": {
-            "select": " cost_per_launch country wikipedia description"
+            "select": " cost_per_launch country wikipedia description first_flight active"
             }
         })
     };
@@ -83,5 +62,22 @@ export const getRocketMoreInfoById = async (id) => {
     const { docs } = await res.json();
     console.log(docs);
     return docs[0];
+}
+
+export const getRocketInfoTable1 = async (id) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content_Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+                "_id": id,
+            },
+            "options": {
+                "select": ""
+            }
+        })
+    }
 }
 

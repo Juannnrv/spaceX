@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Orbitron-Regular";
+    font-family: "Orbitron-Regular", sans-serif;
 }
 
 body {
@@ -85,23 +85,46 @@ body {
 .description__item {
     height: 75vh;
     color: var(--color-4);
-    margin-left: 15px
+    margin-left: 15px;
+    /* background-color: var(--color-2);
+    border-radius: 0 50px 50px 0;
+    padding: 20px;  */
 }
 .description__item h3 {
     color: var(--color-3);
+    margin-bottom: 10px;
+}
+.description__item p {
+    /* font-family: "RobotoMono-Regular", sans-serif; */
+    letter-spacing: 2px;
+    font-weight: bold;
 }
 .info {
     display: flex;
     gap: 10px;
     align-items: center;
-    margin: 10px 0;
+    margin: 30px 0;
+    /* padding: 20px;
+    background-color: var(--color-2);
+    border-radius: 0 50px 50px 0; */
 }
 .info img {
     width: 60px;
     height: 60px;
 }
+#flag {
+    width: 45%;
+    height: 100%;
+}
 .info__item h4 {
     color: var(--color-3);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.info__item a {
+    color: var(--color-3);
+    text-decoration: none;
+    font-weight: bold;
 }
 .rocket__image{
     display: flex;
@@ -474,6 +497,7 @@ h3{
 }
 .footer ul li span{
     font-size: 13px;
+    font-weight: 1000;
 }
 
 .select{
@@ -499,17 +523,17 @@ h3{
     gap: 20px;
     justify-content: center;
     align-items: center;
-    background-color: rgba(42, 144, 139, 0.541);
+    background-color: rgba(42, 144, 139, 0.541);    
     border-radius: 80px;
+    height: 110px;
     margin-right: 13px;
 }
 
-.information__buttom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 110px;
-
+.information__buttom a {
+    color: var(--color-3);
+    text-decoration: none;
+    font-weight: 1000;
+    font-size: 24px;
 }
 
 .buttom__paginacion {

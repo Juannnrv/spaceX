@@ -4,7 +4,7 @@
 :root{
     --color-1: rgb(42, 144, 107);
     --color-1-rgba: rgba(42, 144, 139, 0.541);
-    --color-2: #191b3f9e;
+    --color-2: #191b3fa4;
     --color-3: #ffd633;
     --color-4: #ffffff;
     --color--four: #e52d2d;
@@ -20,6 +20,11 @@
 @font-face {
     font-family: "Orbitron-Regular";
     src: url(../storage/font/Orbitron-Regular.ttf);
+}
+
+@font-face {
+    font-family: "RobtoMono-Regular";
+    src: url(../storage/font/RobotoMono-Regular.ttf);
 }
 /* 
     <!-- Check icons -->
