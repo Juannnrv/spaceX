@@ -1,3 +1,6 @@
+import { 
+    getAllCapsulesId } from "../modules/capsulesinfo.js";
+
 import { getAllRocketsId,  
     getMeasuresRocket,  
     getRocketEngines,
@@ -17,6 +20,7 @@ import { enginesRockets,
     thrustRocket,
     measuresRocket} from "./rockets.js";
 
+    // Rockets
 export const paginationRockets = async () => {
     const rockets = await getAllRocketsId();
     const html = rockets.map((rocket, index) => {
@@ -27,7 +31,7 @@ export const paginationRockets = async () => {
     return html.join("");
 }
 
-export const setupPagination = () => {
+export const setupPaginationRockets = () => {
     const paginationElement = document.querySelector("#paginacion");
     paginationElement.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -39,8 +43,7 @@ export const setupPagination = () => {
     loadRocket(firstRocketId);
 }
 
-async function loadRocket(id) {
-    // Rockets
+const loadRocket = async(id) => {
     const rocketName = await getRocketNameById(id)
     const rocketMoreInfo = await getRocketMoreInfoById(id);
     const infotable1 = await getRocketInfoTable1(id);
@@ -58,4 +61,30 @@ async function loadRocket(id) {
     await imagesRockets(images);
     await thrustRocket(thrust);
     await measuresRocket(measures);
+}
+
+    // Capsules
+export const paginationCapsules = async () => {
+    const capsules = await getAllCapsulesId();
+    const html = capsules.map((capsules, index) => {
+        const pag = index + 1;
+        return `<a href="#" data-id="${capsules.id}">${pag}</a>`;
+    });
+    
+    return html.join("");
+}
+
+export const setUpPaginationCapsules = async() => {
+    document.querySelector("#paginacion").addEventListener("click", async e => {
+        e.preventDefault();
+        const id = e.target.dataset.id;
+        await loadCapsule(id);
+    });
+
+    const firstCapsuleId = document.querySelector("#paginacion").querySelector("a").dataset.id;
+    loadCapsule(firstCapsuleId);
+}
+
+const loadCapsule = async(id) => {
+
 }
