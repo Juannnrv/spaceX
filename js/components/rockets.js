@@ -104,7 +104,7 @@ export const payloadsRockets = async (infotable1) => {
 
 // Stages
 export const RocketsStages = async (Stages) => {
-    console.log(Stages);
+    // console.log(Stages);
 
     let first = Stages.first_stage;
     let second = Stages.second_stage;
@@ -203,6 +203,7 @@ export const enginesRockets = async (infotable2) => {
     `;
 }
 
+// Imagenes
 export const imagesRockets = async (images) => {
     // console.log(images);
 
@@ -225,3 +226,41 @@ export const imagesRockets = async (images) => {
         carouselItems[currentIndex].style.display = 'block';
     }, 3000);
 }
+
+// circulos
+export const thrustRocket = async (thrust) => {
+    console.log(thrust);
+
+    let sea = thrust.thrust_sea_level;
+    let vac = thrust.thrust_vacuum;
+
+    let fullSea = (sea.kN / 1000) * 100;
+    let fullVac = (vac.kN / 1000) * 100;
+
+
+    document.querySelector(".section__information__1").innerHTML = /*html*/`
+    <div class="circle_sea">
+        <div class="circle__info">
+            <p>Atmospheric acceleration</p>
+            <span>${fullSea}  %</span>
+            <span>${sea.kN}   kN</span>
+            <span>${sea.lbf}  lbf</span>
+        </div>
+        <svg class="circleSvg">
+            <circle class="circle" stroke-dasharray="${fullSea} 100" r="80" cx="50%" cy="50%" pathlength="100"></circle>
+        </svg>
+    </div>
+
+    <div class="circle_vac">
+        <div id="vac" class="circle__info">
+            <p>Speed in sea</p>
+            <span>${fullVac}  %</span>
+            <span>${vac.kN}   kN</span>
+            <span>${vac.lbf}  lbf</span>
+        </div>
+        <svg class="circleSvg">
+            <circle class="circle" stroke-dasharray="${fullVac} 100" r="80" cx="50%" cy="50%" pathlength="100"></circle>
+        </svg>
+    </div>
+    `;
+} 

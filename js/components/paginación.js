@@ -4,14 +4,16 @@ import { getAllRocketsId,
     getRocketInfoTable1, 
     getRocketMoreInfoById,
      getRocketNameById, 
-     getRocketsStage} from "../modules/rocketsInfo.js";
+     getRocketsStage,
+     getThrustRocket} from "../modules/rocketsInfo.js";
 
 import { enginesRockets, 
     RocketsStages, 
     moreInfoRocket, 
     nameRocket, 
     payloadsRockets, 
-    imagesRockets} from "./rockets.js";
+    imagesRockets,
+    thrustRocket} from "./rockets.js";
 
 export const paginationRockets = async () => {
     const rockets = await getAllRocketsId();
@@ -35,6 +37,7 @@ export const setupPagination = () => {
         const enginestable = await getRocketEngines(id);
         const Stages = await getRocketsStage(id);
         const images = await getRocketImages(id);
+        const thrust = await getThrustRocket(id);
 
         await nameRocket(rocketName);
         await moreInfoRocket(rocketMoreInfo);
@@ -42,5 +45,6 @@ export const setupPagination = () => {
         await enginesRockets(enginestable);
         await RocketsStages(Stages);
         await imagesRockets(images);
+        await thrustRocket(thrust);
     });
 }

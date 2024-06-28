@@ -146,3 +146,24 @@ export const getRocketImages = async (id) => {
     // console.log(docs[0].flickr_images);
     return docs[0].flickr_images;
 }
+
+export const getThrustRocket= async (id) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+              "_id": id
+            },
+            "options": {
+                "select": "first_stage.thrust_sea_level first_stage.thrust_vacuum"
+            }
+          })
+    };
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    // console.log(docs[0].first_stage);
+    return docs[0].first_stage;
+}
