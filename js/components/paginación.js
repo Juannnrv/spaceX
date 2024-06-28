@@ -28,28 +28,34 @@ export const paginationRockets = async () => {
 }
 
 export const setupPagination = () => {
-    document.querySelector("#paginacion").addEventListener("click", async (e) => {
+    const paginationElement = document.querySelector("#paginacion");
+    paginationElement.addEventListener("click", async (e) => {
         e.preventDefault();
         const id = e.target.dataset.id;
-
-        // Rockets
-        const rocketName = await getRocketNameById(id)
-        const rocketMoreInfo = await getRocketMoreInfoById(id);
-        const infotable1 = await getRocketInfoTable1(id);
-        const enginestable = await getRocketEngines(id);
-        const Stages = await getRocketsStage(id);
-        const images = await getRocketImages(id);
-        const thrust = await getThrustRocket(id);
-        const measures = await getMeasuresRocket(id);
-
-
-        await nameRocket(rocketName);
-        await moreInfoRocket(rocketMoreInfo);
-        await payloadsRockets(infotable1);
-        await enginesRockets(enginestable);
-        await RocketsStages(Stages);
-        await imagesRockets(images);
-        await thrustRocket(thrust);
-        await measuresRocket(measures);
+        await loadRocket(id);
     });
+
+    const firstRocketId = paginationElement.querySelector('a').dataset.id;
+    loadRocket(firstRocketId);
+}
+
+async function loadRocket(id) {
+    // Rockets
+    const rocketName = await getRocketNameById(id)
+    const rocketMoreInfo = await getRocketMoreInfoById(id);
+    const infotable1 = await getRocketInfoTable1(id);
+    const enginestable = await getRocketEngines(id);
+    const Stages = await getRocketsStage(id);
+    const images = await getRocketImages(id);
+    const thrust = await getThrustRocket(id);
+    const measures = await getMeasuresRocket(id);
+
+    await nameRocket(rocketName);
+    await moreInfoRocket(rocketMoreInfo);
+    await payloadsRockets(infotable1);
+    await enginesRockets(enginestable);
+    await RocketsStages(Stages);
+    await imagesRockets(images);
+    await thrustRocket(thrust);
+    await measuresRocket(measures);
 }
