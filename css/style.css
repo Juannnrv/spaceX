@@ -88,7 +88,7 @@ body {
     margin-left: 15px;
     background-color: var(--color-2); 
     border-radius: 0 50px 50px 0;
-    padding: 18px;
+    padding: 7px;
     border: var(--color-1) 5px solid;
 }
 #description__item h3 {
@@ -149,9 +149,6 @@ body {
 }
 
 /* Fases del rocket */
-h3{
-    padding: 10px 10px 0px 10px;
-}
 
 #more__information{
     padding: 0px 10px 0px 10px
@@ -683,9 +680,25 @@ h3{
     height: 75vh;
 }
 .information__item img {
+    width: 95%;
+    height: 35%;
+    border-radius: 40px;
+    box-shadow: 0px 0px 20px var(--color-4);
+}
+.progressBar {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.bar strong {
+    color: var(--color-4);
+}
+.num {
     width: 100%;
 }
-
+.num p{
+    color: var(--color-4);
+}
 .information__buttom {
     display: flex;
     gap: 20px;

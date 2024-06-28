@@ -75,7 +75,8 @@ export const getRocketInfoTable1 = async (id) => {
                 "_id": id,
             },
             "options": {
-                "select": "payload_weights.name payload_weights.kg payload_weights.lb"
+                "select": "payload_weights.name payload_weights.kg payload_weights.lb",
+                "sort": "desc"
             }
         })
     };
@@ -166,4 +167,27 @@ export const getThrustRocket= async (id) => {
     const { docs } = await res.json();
     // console.log(docs[0].first_stage);
     return docs[0].first_stage;
+}
+
+export const getMeasuresRocket = async (id) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+                "_id": id
+            }, 
+            "options": {
+                "select": "height diameter mass success_rate_pct payload_weights.name payload_weights.kg payload_weights.lb",
+                "sort": "desc"
+            }
+        })
+    };
+
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    // console.log(docs[0])
+    return docs[0];
 }

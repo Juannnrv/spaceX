@@ -1,4 +1,5 @@
 import { getAllRocketsId,  
+    getMeasuresRocket,  
     getRocketEngines,
     getRocketImages,
     getRocketInfoTable1, 
@@ -13,7 +14,8 @@ import { enginesRockets,
     nameRocket, 
     payloadsRockets, 
     imagesRockets,
-    thrustRocket} from "./rockets.js";
+    thrustRocket,
+    measuresRocket} from "./rockets.js";
 
 export const paginationRockets = async () => {
     const rockets = await getAllRocketsId();
@@ -38,6 +40,8 @@ export const setupPagination = () => {
         const Stages = await getRocketsStage(id);
         const images = await getRocketImages(id);
         const thrust = await getThrustRocket(id);
+        const measures = await getMeasuresRocket(id);
+
 
         await nameRocket(rocketName);
         await moreInfoRocket(rocketMoreInfo);
@@ -46,5 +50,6 @@ export const setupPagination = () => {
         await RocketsStages(Stages);
         await imagesRockets(images);
         await thrustRocket(thrust);
+        await measuresRocket(measures);
     });
 }
