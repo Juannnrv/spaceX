@@ -234,15 +234,15 @@ export const thrustRocket = async (thrust) => {
     let sea = thrust.thrust_sea_level;
     let vac = thrust.thrust_vacuum;
 
-    let fullSea = (sea.kN / 1000) * 100;
-    let fullVac = (vac.kN / 1000) * 100;
+    let fullSea = (sea.kN / 128000) * 100;
+    let fullVac = (vac.kN / 138000) * 100;
 
 
     document.querySelector(".section__information__1").innerHTML = /*html*/`
     <div class="circle_sea">
         <div class="circle__info">
             <p>Atmospheric acceleration</p>
-            <span>${fullSea}  %</span>
+            <span>${fullSea.toFixed(2)}  %</span>
             <span>${sea.kN}   kN</span>
             <span>${sea.lbf}  lbf</span>
         </div>
@@ -254,7 +254,7 @@ export const thrustRocket = async (thrust) => {
     <div class="circle_vac">
         <div id="vac" class="circle__info">
             <p>Speed in sea</p>
-            <span>${fullVac}  %</span>
+            <span>${fullVac.toFixed(2)}  %</span>
             <span>${vac.kN}   kN</span>
             <span>${vac.lbf}  lbf</span>
         </div>
