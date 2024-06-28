@@ -202,3 +202,26 @@ export const enginesRockets = async (infotable2) => {
     </div>
     `;
 }
+
+export const imagesRockets = async (images) => {
+    // console.log(images);
+
+    let imagesHTML = images.map((img, index) => /*html*/
+        `<img class="carousel__item" style="display: ${index === 0 ? 'block' : 'none'}" src="${img}" alt="rocket" referrerpolicy = "no-referrer">`).join('');
+
+    document.querySelector(".section__image").innerHTML = imagesHTML;
+
+    let carouselItems = Array.from(document.querySelectorAll('.carousel__item'));
+    let currentIndex = 0;
+
+    setInterval(() => {
+        carouselItems[currentIndex].style.display = 'none';
+
+        currentIndex++;
+        if (currentIndex >= carouselItems.length) {
+            currentIndex = 0; 
+        }
+
+        carouselItems[currentIndex].style.display = 'block';
+    }, 3000);
+}

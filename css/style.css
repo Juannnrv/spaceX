@@ -430,24 +430,31 @@ h3{
 .table__container__1 div strong{
     color: var(--color-4);
 }
+
 .section__image {
     grid-area: colum__2;
     display: flex;
     overflow-x: auto;
     align-items: center;
+    margin-top: 100px;
 }
 
-.section__image>.carousel__item {
-    text-align: center;
-    margin: 0 10px;
-}
-
-.section__image>.carousel__item img {
+.section__image img, .section__image .carousel__item img {
     width: 305px;
-    height: 190px;
-    border-radius: 10px;
+    height: 80%;
+    border-radius: 20px;
     object-fit: cover;
     box-shadow: 0px 0px 10px var(--color-1);
+}
+
+.section__image .carousel__item {
+    text-align: center;
+    margin: 0 50px;
+}
+
+.section__image .carousel__item img {
+    height: 190px;
+    border-radius: 10px;
 }
 
 .section__information__3 {
