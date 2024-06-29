@@ -1,29 +1,50 @@
 
+export const clearContainer = (selector) => {
+    const container = document.querySelector(selector);
+    if (container) {
+        container.innerHTML = '';
+    } else {
+        console.error(`Element ${selector} not found in DOM`);
+    }
+}
 
 export const nameRocket = async (name) => {
-    document.querySelector("#header__title").innerHTML = name;
+    clearContainer("#header__title"); 
+
+    const headerTitle = document.createElement('h2');
+    headerTitle.textContent = name;
+
+    const headerTitleElement = document.querySelector("#header__title");
+    if (headerTitleElement) {
+        headerTitleElement.appendChild(headerTitle);
+    }
 }
 
 // Columna izquierda
 export const moreInfoRocket = async (moreInfo) => {
-    // console.log(moreInfo);
+    clearContainer("#description__item"); 
+
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add('description');
+
     let flagSrc;
     if (moreInfo.country === "United States") {
-            flagSrc = "https://cdn3d.iconscout.com/3d/premium/thumb/united-states-flag-pole-5082845-4234133.png";
-        } else {
-            flagSrc = "https://cdn3d.iconscout.com/3d/premium/thumb/marshall-islands-flag-pole-5082826-4234114.png?f=webp";
-        }
+        flagSrc = "https://cdn3d.iconscout.com/3d/premium/thumb/united-states-flag-pole-5082845-4234133.png";
+    } else {
+        flagSrc = "https://cdn3d.iconscout.com/3d/premium/thumb/marshall-islands-flag-pole-5082826-4234114.png?f=webp";
+    }
+
     let statusSrc;
     let status;
-        if (moreInfo.active === true) {
-            statusSrc = "./storage/img/switch-on.png";
-              status = "Active"
-        } else {
-            statusSrc = "./storage/img/switch-off.png";
-             status = "Retired"
-        }
-    document.querySelector("#description__item").innerHTML = /*html*/`
-    <div class="description">
+    if (moreInfo.active === true) {
+        statusSrc = "./storage/img/switch-on.png";
+        status = "Active"
+    } else {
+        statusSrc = "./storage/img/switch-off.png";
+        status = "Retired"
+    }
+
+    descriptionContainer.innerHTML = /*html*/`
         <h3>Description</h3>
         <p>${moreInfo.description}</p>
 
@@ -65,13 +86,18 @@ export const moreInfoRocket = async (moreInfo) => {
                 <a href="${moreInfo.wikipedia}" target="_blank">Read more here . . .</a>
             </div>
         </div>
-    </div>
-    ` ;
+    `;
+
+    const descriptionItemElement = document.querySelector("#description__item");
+    if (descriptionItemElement) {
+        descriptionItemElement.appendChild(descriptionContainer);
+    }
 }
+
 
 // circulos progressbar
 export const thrustRocket = async (thrust) => {
-    // console.log(thrust);
+    clearContainer(".section__information__1"); 
 
     let sea = thrust.thrust_sea_level;
     let vac = thrust.thrust_vacuum;
@@ -79,130 +105,150 @@ export const thrustRocket = async (thrust) => {
     let fullSea = (sea.kN / 128000) * 100;
     let fullVac = (vac.kN / 138000) * 100;
 
+    const circleSeaContainer = document.createElement('div');
+    circleSeaContainer.classList.add('circle_sea');
 
-    document.querySelector(".section__information__1").innerHTML = /*html*/`
-    <div class="circle_sea">
-        <div class="circle__info">
-            <p>Atmospheric acceleration</p>
-            <span>${fullSea.toFixed(2)}  %</span>
-            <span>${sea.kN}   kN</span>
-            <span>${sea.lbf}  lbf</span>
-        </div>
-        <svg class="circleSvg">
-            <circle class="circle" stroke-dasharray="${fullSea} 100" r="80" cx="50%" cy="50%" pathlength="100"></circle>
-        </svg>
-    </div>
-
-    <div class="circle_vac">
-        <div id="vac" class="circle__info">
-            <p>Speed in sea</p>
-            <span>${fullVac.toFixed(2)}  %</span>
-            <span>${vac.kN}   kN</span>
-            <span>${vac.lbf}  lbf</span>
-        </div>
-        <svg class="circleSvg">
-            <circle class="circle" stroke-dasharray="${fullVac} 100" r="80" cx="50%" cy="50%" pathlength="100"></circle>
-        </svg>
-    </div>
+    const circleSeaInfo = document.createElement('div');
+    circleSeaInfo.classList.add('circle__info');
+    circleSeaInfo.innerHTML = /*html*/`
+        <p>Atmospheric acceleration</p>
+        <span>${fullSea.toFixed(2)} %</span>
+        <span>${sea.kN} kN</span>
+        <span>${sea.lbf} lbf</span>
     `;
+
+    const circleSeaSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    circleSeaSvg.classList.add('circleSvg');
+    circleSeaSvg.innerHTML = `<circle class="circle" stroke-dasharray="${fullSea} 100" r="80" cx="50%" cy="50%" pathlength="100"></circle>`;
+
+    circleSeaContainer.appendChild(circleSeaInfo);
+    circleSeaContainer.appendChild(circleSeaSvg);
+
+    const circleVacContainer = document.createElement('div');
+    circleVacContainer.classList.add('circle_vac');
+    
+    const circleVacInfo = document.createElement('div');
+    circleVacInfo.classList.add('circle__info');
+    circleVacInfo.setAttribute('id', 'vac')
+
+    circleVacInfo.innerHTML = /*html*/`
+        <p>Speed in sea</p>
+        <span>${fullVac.toFixed(2)} %</span>
+        <span>${vac.kN} kN</span>
+        <span>${vac.lbf} lbf</span>
+    `;
+
+    const circleVacSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    circleVacSvg.classList.add('circleSvg');
+    circleVacSvg.innerHTML = `<circle class="circle" stroke-dasharray="${fullVac} 100" r="80" cx="50%" cy="50%" pathlength="100"></circle>`;
+
+    circleVacContainer.appendChild(circleVacInfo);
+    circleVacContainer.appendChild(circleVacSvg);
+
+    const sectionInformation1Element = document.querySelector(".section__information__1");
+    if (sectionInformation1Element) {
+        sectionInformation1Element.appendChild(circleSeaContainer);
+        sectionInformation1Element.appendChild(circleVacContainer);
+    }
 }
 
-// Tabla 1 payloads
-export const payloadsRockets = async (infotable1) => {
-    // console.log(infotable1);
+// Stages
+export const RocketsStages = async (Stages, infotable1, infotable2) => {
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3")
+
+    let first = Stages.first_stage;
+    let second = Stages.second_stage;
+
     let info = infotable1.map(payload => ({
         name: payload.name,
         kg: payload.kg,
         lb: payload.lb
     }));
-    
-    // console.log(info);
 
-    const informationTable1 = document.querySelector(".information__table__1");
-
-    informationTable1.innerHTML = /*html*/`
-    <h3> PAYLOADS </h3>
-    <hr>
-    <div class="table1">
-        <div class="title">
-            <span>Name</span>
-            <span>KG y LB</span>
-        </div>
-        ${
-            info.map(payload => /*html*/`
-                <div class="payload_info">
-                    <span>${payload.name}</span>
-                    <div class="payload__weight">
-                        <p>${payload.kg}   kg</p>
-                        <p>${payload.lb}   lb</p>
+    const firstStageContainer = document.createElement('div');
+    firstStageContainer.classList.add('stage1');
+    firstStageContainer.innerHTML = /*html*/`
+        <div id="first_stage">
+                <div class="stage">
+                    <h3>FIRST STAGE</h3>
+                    <hr>
+                    <div class="stage__info">
+                        <p>Reusable</p>
+                        <span>${first.reusable === true ? "Yes" : "No"}</span>
                     </div>
+                    <div class="stage__info">
+                        <p>Engines</p>
+                        <span>${first.engines}</span>
+                    </div>
+                    <div class="stage__info">
+                        <p>Fuel amount</p>
+                        <span>${first.fuel_amount_tons} tons</span>
+                    </div>
+                    ${first.burn_time_sec ? `
+                    <div class="stage__info">
+                        <p>Burn time</p>
+                        <span>${first.burn_time_sec} sec</span>
+                    </div>` : ''}
                 </div>
-            `).join('')
-        }
-    </div>
-    `;
-};
-
-// Stages
-export const RocketsStages = async (Stages) => {
-    // console.log(Stages);
-
-    let first = Stages.first_stage;
-    let second = Stages.second_stage;
-
-    document.querySelector("#first_stage").innerHTML = /*html*/`
-    <h3> FIRST STAGE </h3>
-    <hr>
-    <div class="stage">
-        <div class="stage__info">
-            <p>Reusable</p>
-            <span>${first.reusable === true ? "Yes" : "No" }</span>
         </div>
-        <div class="stage__info">
-            <p>Engines</p>
-            <span>${first.engines}</span>
+        `;
+
+    // Tabla 1 payloads
+    const payloads = document.createElement('div');
+    payloads.classList.add('payloadsTable');
+    payloads.innerHTML = /*html*/`
+        <h3>PAYLOADS</h3>
+        <hr>
+        <div class="table1">
+            <div class="title">
+                <span>Name</span>
+                <span>KG y LB</span>
+            </div>
+            ${info.map(payload => `
+                    <div class="payload_info">
+                        <span>${payload.name}</span>
+                        <div class="payload__weight">
+                            <p>${payload.kg} kg</p>
+                            <p>${payload.lb} lb</p>
+                        </div>
+                    </div>
+                `).join('')
+            }
         </div>
-        <div class="stage__info">
-            <p>Fuel amount</p>
-            <span>${first.fuel_amount_tons} tons</span>
-        </div>
-        ${first.burn_time_sec ? /*html*/`
-            <div class="stage__info">
-            <p>Burn time</p>
-            <span>${first.burn_time_sec} sec</span>
-        </div>` : ''}
     `;
 
-    document.querySelector("#second-stage").innerHTML = /*html*/`
-    <h3> SECOND STAGE </h3>
-    <hr>
-    <div class="stage">
-        <div class="stage__info">
-            <p>Reusable</p>
-            <span>${second.reusable === true ? "Yes" : "No" }</span>
+    const secondStageContainer = document.createElement('div');
+    secondStageContainer.classList.add('stage2');
+    secondStageContainer.innerHTML = /*html*/`
+        <div id="second_stage">
+            <div class="stage">
+                <h3>SECOND STAGE</h3>
+                <hr>
+                <div class="stage__info">
+                    <p>Reusable</p>
+                    <span>${second.reusable === true ? "Yes" : "No"}</span>
+                </div>
+                <div class="stage__info">
+                    <p>Engines</p>
+                    <span>${second.engines}</span>
+                </div>
+                <div class="stage__info">
+                    <p>Fuel amount</p>
+                    <span>${second.fuel_amount_tons} tons</span>
+                </div>
+                ${second.burn_time_sec ? `
+                <div class="stage__info">
+                    <p>Burn time</p>
+                    <span>${second.burn_time_sec} sec</span>
+                </div>` : ''}
+            </div>
         </div>
-        <div class="stage__info">
-            <p>Engines</p>
-            <span>${second.engines}</span>
-        </div>
-        <div class="stage__info">
-            <p>Fuel amount</p>
-            <span>${second.fuel_amount_tons} tons</span>
-        </div>
-        ${second.burn_time_sec ? /*html*/`
-            <div class="stage__info">
-            <p>Burn time</p>
-            <span>${second.burn_time_sec} sec</span>
-        </div>` : ''}
     `;
-}
 
-// Tabla 2 engines
-export const enginesRockets = async (infotable2) => {
-    // console.log(infotable2);
-
-    document.querySelector(".information__table__2").innerHTML = /*html*/`
-    <h3> ENGINES </h3>
+    const engines = document.createElement('div');
+    engines.classList.add('information__table__engines');
+    engines.innerHTML = /*html*/`<h3> ENGINES </h3>
     <hr>
     <div class="table2">
         <div class="engineInfo">
@@ -242,16 +288,37 @@ export const enginesRockets = async (infotable2) => {
         </div>
     </div>
     `;
+
+    const sectionInformation2 = document.querySelector(".section__information__2");
+    const sectionInformation3 = document.querySelector(".section__information__3");
+    if (sectionInformation2) {
+        sectionInformation2.appendChild(firstStageContainer);
+        sectionInformation2.appendChild(payloads);
+    }
+    if (sectionInformation3) {
+        sectionInformation3.appendChild(secondStageContainer);
+        sectionInformation3.appendChild(engines);
+    }
 }
 
 // Imagenes
 export const imagesRockets = async (images) => {
-    // console.log(images);
+    clearContainer(".section__image"); 
 
-    let imagesHTML = images.map((img, index) => /*html*/
-        `<img class="carousel__item" style="display: ${index === 0 ? 'block' : 'none'}" src="${img}" alt="rocket" referrerpolicy = "no-referrer">`).join('');
+    let imagesHTML = images.map((img, index) => `
+        <img class="carousel__item" style="display: ${index === 0 ? 'block' : 'none'}" src="${img}" alt="rocket" referrerpolicy="no-referrer">
+    `).join('');
 
-    document.querySelector(".section__image").innerHTML = imagesHTML;
+    const imagesContainer = document.createElement('div');
+    imagesContainer.classList.add('section__image_rockets');
+    imagesContainer.innerHTML = imagesHTML;
+
+    const imagesContainerElement = document.querySelector(".section__image");
+    if (imagesContainerElement) {
+        imagesContainerElement.appendChild(imagesContainer);
+    } else {
+        console.error("Element .section__image__carousel not found in DOM");
+    }
 
     let carouselItems = Array.from(document.querySelectorAll('.carousel__item'));
     let currentIndex = 0;
@@ -261,16 +328,18 @@ export const imagesRockets = async (images) => {
 
         currentIndex++;
         if (currentIndex >= carouselItems.length) {
-            currentIndex = 0; 
+            currentIndex = 0;
         }
 
         carouselItems[currentIndex].style.display = 'block';
     }, 3000);
-}
+};
+
 
 // barras progressbar
 export const measuresRocket = async (measures) => {
     // console.log(measures);
+    clearContainer(".information__item");
 
     let totalKg = 0;
     let totalLb = 0;
@@ -293,7 +362,10 @@ export const measuresRocket = async (measures) => {
     totalMeters += measures.height.meters;
     totalFeet += measures.height.feet;
 
-    document.querySelector(".information__item").innerHTML = /*html*/ `
+    const measuresContainer = document.createElement('div');
+    measuresContainer.classList.add('information__item__progressbar');
+
+    measuresContainer.innerHTML = /*html*/ `
     <div class="progressBar">
         <div class="bar">
             <strong>Rocket weight</strong> 
@@ -357,4 +429,11 @@ export const measuresRocket = async (measures) => {
     <img src="./storage/img/buzz.gif">
     
     `; 
+
+    const measuresContainerElement = document.querySelector(".information__item");
+    if (measuresContainerElement) {
+        measuresContainerElement.appendChild(measuresContainer);
+    } else {
+        console.error("Element .section__measures not found in DOM");
+    }
 }

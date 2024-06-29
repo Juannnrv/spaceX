@@ -376,9 +376,10 @@ body {
     align-items: center;
 }
 #first_stage {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 10px 50px;
+    margin: 0 50px 7px 50px;
     background-color: var(--color-2);
     padding: 10px;
     border: var(--color-1) 5px solid;
@@ -388,13 +389,16 @@ body {
     margin-bottom: 5px;
 }
 #first_stage hr {
-    margin: 0 auto;
     width: 100%;
     height: 5px;
     background-color: var(--color-1);
     border: var(--color-1);
     border-collapse: collapse;
     margin-bottom: 5px;
+}
+.stage {
+    display: flex;
+    flex-direction: column;
 }
 .stage__info {
     display: flex;
@@ -407,9 +411,9 @@ body {
 .stage__info span {
     color: var(--color-4);
 }
-.information__table__1 {
+.payloadsTable {
     width: 85%;
-    margin: 10px auto;
+    margin: 0 10px 0 32px ;
     grid-area: table__colum__1;
     display: flex;
     flex-direction: column;
@@ -417,16 +421,19 @@ body {
     border: var(--color-1) 5px solid;
     padding: 10px;
 }
+
 .table1 {
     overflow-y: scroll;
     height: 21vh;
 }
-.information__table__1 h3{
+
+.payloadsTable h3 {
     padding: 0 25px;
     margin-bottom: 5px;
-    color: var(--color-4);
+    color: var(--color-3);
 }
-.information__table__1 hr{
+
+.payloadsTable hr {
     margin: 0 auto;
     width: 100%;
     height: 5px;
@@ -435,37 +442,45 @@ body {
     border-collapse: collapse;
     margin-bottom: 5px;
 }
+
 .title {
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
 }
-.title span{
+
+.title span {
     padding: 0 25px;
     margin-bottom: 5px;
     color: var(--color-3);
 }
+
 .payload_info {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
 }
+
 .payload_info p,
-.payload_info span{
+.payload_info span {
     color: var(--color-4);
 }
+
 .payload_info span {
     width: 60%;
     display: flex;
     align-items: center;
 }
+
 .payload__weight {
     display: flex;
     flex-direction: column;
 }
+
 .payload__weight spam {
     color: var(--color-4);
 }
+
 .table__container__1{
     height: 160px;
     overflow-y: auto;
@@ -492,7 +507,7 @@ body {
 
 .section__image img, .section__image .carousel__item img {
     width: 305px;
-    height: 80%;
+    height: 36vh;
     border-radius: 20px;
     object-fit: cover;
     box-shadow: 0px 0px 10px var(--color-1);
@@ -532,19 +547,20 @@ body {
     align-items: center;
 }
 
-#second-stage {
+#second_stage {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 10px 50px;
+    margin: 0 50px 7px 50px;
     background: var(--color-1-rgba);
     padding: 10px;
     border: var(--color-3) 5px solid;
 }
-#second-stage h3 {
+#second_stage h3 {
     color: var(--color-4);
     margin-bottom: 5px;
 }
-#second-stage hr {
+#second_stage hr {
     margin: 0 auto;
     width: 100%;
     height: 5px;
@@ -554,23 +570,22 @@ body {
     margin-bottom: 5px;
 }
 
-.information__table__2 {
+.information__table__engines {
     width: 85%;
-    margin: 10px auto;
+    margin: 0 10px 0 32px ;
     grid-area: table__colum__2;
     display: flex;
     flex-direction: column;
     border: 5px solid var(--color-3);
     padding: 10px;
-    /* background: rgba(255, 255, 255, 0.179); */
     background: var(--color-1-rgba);
 }
-.information__table__2 h3{
+.information__table__engines h3{
     padding: 0 25px;
     margin-bottom: 5px;
     color: var(--color-4);
 }
-.information__table__2 hr{
+.information__table__engines hr{
     margin: 0 auto;
     width: 100%;
     height: 5px;
@@ -716,24 +731,32 @@ body {
     font-size: 24px;
 }
 
-.buttom__paginacion {
-    display: inline-block;
+.paginacion {
+    display: flex;
+    margin: 10px;
+    border-radius: 80px;
+    padding: 20px;
+    background-color: var(--color-1-rgba);
+    justify-content: center;
 }
 
-.buttom__paginacion a {
+.paginacion a {
     color: var(--color-4);
     text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
     float: left;
     padding: 8px 16px;
 }
 
-.buttom__paginacion a.activo {
-    background-color: var(--color-1);
+.paginacion a.activo {
+    background-color: var(--color-3);
     color: var(--color-4);
 }
 
-.buttom__paginacion a:hover:not(.activo) {
-    background-color: var(--color-2);
+.paginacion a:hover:not(.activo) {
+    background-color: var(--color-3);
+    border-radius: 80px;
 }
 
 .information__container {

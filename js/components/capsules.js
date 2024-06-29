@@ -54,6 +54,6 @@ export const AllinfoCapsules = async (info) => {
     </div>
     `;
 
-    document.querySelector(".information__table__1").innerHTML = /*html*/`
-    `;
+    // document.querySelector(".information__table__1").innerHTML = /*html*/`
+    // `;
 }
