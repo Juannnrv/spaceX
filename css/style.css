@@ -82,7 +82,7 @@ body {
     grid-area: nav__1;
 }
 
-#description__item {
+.description {
     height: 89vh;
     color: var(--color-4);
     margin-left: 15px;
@@ -91,11 +91,11 @@ body {
     padding: 7px;
     border: var(--color-1) 5px solid;
 }
-#description__item h3 {
+.description h3 {
     color: var(--color-3);
     margin-bottom: 10px;
 }
-#description__item p {
+.description p {
     /* font-family: "RobotoMono-Regular", sans-serif; */
     letter-spacing: 2px;
     font-weight: bold;
@@ -212,26 +212,26 @@ body {
     margin: 10px 20px 10px 10px
 }
 
-.description__buttom{
+.description__item__buttom{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 110px;
 }
 
-.description__container {
+.description__item__container {
     display: flex;
     gap: 10px;
     margin: 0 var(--layout-description-container-x);
     margin-bottom: 25px;
 }
 
-.description__container div:last-child h3 {
+.description__item__container div:last-child h3 {
     color: var(--color-4);
 }
 
-.description__container div:last-child small,
-.description__container div:last-child a {
+.description__item__container div:last-child small,
+.description__item__container div:last-child a {
     margin-top: 25px;
     color: var(--color-2);
     text-decoration: none;
@@ -486,7 +486,6 @@ body {
 .section__image {
     grid-area: colum__2;
     display: flex;
-    overflow-x: auto;
     align-items: center;
     margin-top: 100px;
 }
@@ -793,19 +792,6 @@ progress[value]::-moz-progress-bar {
     background: var(--color);
 }
 
-/*  Country of the rocket */
-
-/* <div class="divCountry">
-<div class="flagCountry">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="">
-</div>
-<div class="informtionCountry">
-    <h2>Country of the rocket</h2>
-    <p>United States</p>
-</div>
-
-</div> */
-
 .divCountry {
     display: flex;
     color: var(--color-4);
@@ -816,4 +802,78 @@ progress[value]::-moz-progress-bar {
 .flagCountry img{
     height: 15vh;
     overflow: hidden;
+}
+
+/* Capsule */
+
+.data {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px;
+    padding: 5px;
+    background-color: var(--color-1-rgba);
+    border: 5px solid var(--color-3);
+}
+
+.data h4 {
+    color: var(--color-4);
+    margin-bottom: 5px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.data hr {
+    margin: 0 auto;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-3);
+    border: var(--color-3);
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+.data__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.data__item img {
+    width: 15%;
+}
+.data__item__text {
+    display: flex;
+    flex-direction: column;
+}
+.data__item__text p {
+    color: var(--color-4);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.reuse {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px;
+    padding: 5px;
+    background-color: var(--color-1-rgba);
+    border: 5px solid var(--color-3);
+    height: 28vh
+    ;
+}
+
+.reuse h4 {
+    color: var(--color-4);
+    margin-bottom: 5px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.reuse hr {
+    margin: 0 auto;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-3);
+    border: var(--color-3);
+    border-collapse: collapse;
+    margin-bottom: 5px;
 }

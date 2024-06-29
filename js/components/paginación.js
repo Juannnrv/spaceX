@@ -1,5 +1,5 @@
 import { 
-    getAllCapsulesId } from "../modules/capsulesinfo.js";
+    getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
 
 import { getAllRocketsId,  
     getMeasuresRocket,  
@@ -10,6 +10,7 @@ import { getAllRocketsId,
      getRocketNameById, 
      getRocketsStage,
      getThrustRocket} from "../modules/rocketsInfo.js";
+import { AllinfoCapsules } from "./capsules.js";
 
 import { enginesRockets, 
     RocketsStages, 
@@ -68,7 +69,7 @@ export const paginationCapsules = async () => {
     const capsules = await getAllCapsulesId();
     const html = capsules.map((capsules, index) => {
         const pag = index + 1;
-        return `<a href="#" data-id="${capsules.id}">${pag}</a>`;
+        return `<a href="#${pag}" data-id="${capsules.id}">${pag}</a>`;
     });
     
     return html.join("");
@@ -86,5 +87,9 @@ export const setUpPaginationCapsules = async() => {
 }
 
 const loadCapsule = async(id) => {
+
+    const capsuleInfo = await getAllInfoCapsules(id);
+
+    await AllinfoCapsules(capsuleInfo);
 
 }
