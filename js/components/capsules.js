@@ -1,6 +1,6 @@
 
 export const AllinfoCapsules = async (info) => {
-    console.log(info);
+    // console.log(info);
 
     let statusSrc;
     let status;
@@ -24,7 +24,7 @@ export const AllinfoCapsules = async (info) => {
         time += 1;
     })
 
-    console.log(time);
+    // console.log(time);
 
     document.querySelector(".section__information__2").innerHTML = /*html*/`
     <div class="data_capsules">

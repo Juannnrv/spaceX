@@ -1,6 +1,7 @@
-const apiUrl = "https://api.spacexdata.com/v4/capsules/query";
 
-export const getAllCapsulesId = async () => {
+const apiUrl = "https://api.spacexdata.com/v4/crew/query";
+
+export const getAllCrewId = async () => {
     const options = {
         method: 'POST',
         headers: {
@@ -16,11 +17,11 @@ export const getAllCapsulesId = async () => {
     
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    // console.log(docs);
+    console.log(docs)
     return docs;
 }
 
-export const getAllInfoCapsules = async (id) => {
+export const getAllInfoCrew = async (id) => {
     const options = {
         method: 'POST',
         headers: {
@@ -37,6 +38,6 @@ export const getAllInfoCapsules = async (id) => {
     
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    // console.log(docs[0]);
+    // console.log(docs[0])
     return docs[0];
 }

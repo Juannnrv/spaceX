@@ -1,10 +1,12 @@
 import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
+import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { AllinfoCapsules } from "./capsules.js";
+import { AllinfoCrew } from "./crew.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 
 let currentPage = 0;
-const itemsPerPage = 4;
+const itemsPerPage = 5;
 
 const renderPagination = (totalItems, type) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -36,6 +38,9 @@ const renderPagination = (totalItems, type) => {
             } else if (type === 'capsules') {
                 paginationCapsules();
             }
+            else if ( type === 'crew') {
+                paginationCrew();
+            }
         }
     };
 
@@ -53,6 +58,9 @@ const renderPagination = (totalItems, type) => {
             } else if (type === 'capsules') {
                 paginationCapsules();
             }
+            else if ( type === 'crew') {
+                paginationCrew();
+            }
         }
     };
 
@@ -62,93 +70,119 @@ const renderPagination = (totalItems, type) => {
 
 // Rockets
 export const paginationRockets = async () => {
-    try {
-        const rockets = await getAllRocketsId();
-        renderPagination(rockets.length, 'rockets'); 
 
-        const paginationElement = document.querySelector("#paginacion");
-        paginationElement.addEventListener("click", async (e) => {
-            e.preventDefault();
-            if (e.target.tagName === 'A') {
-                const id = e.target.dataset.id;
-                const type = e.target.dataset.type; 
-                if (id && type === 'rockets') {
-                    await loadRocket(rockets[id].id);
-                }
+    const rockets = await getAllRocketsId();
+    renderPagination(rockets.length, 'rockets'); 
+
+    const paginationElement = document.querySelector("#paginacion");
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'rockets') {
+                await loadRocket(rockets[id].id);
             }
-        });
-
-        if (rockets.length > 0) {
-            await loadRocket(rockets[0].id);
         }
-    } catch (error) {
-        console.error("Error fetching rockets:", error);
-        return "<p>Error loading rockets</p>";
+    });
+
+    if (rockets.length > 0) {
+        await loadRocket(rockets[0].id);
     }
 }
 
 const loadRocket = async (id) => {
-    try {
-        clearContainer(".section__information__1");
-        clearContainer(".information__table__1");
-        clearContainer(".information__table__2");
-        clearContainer(".section__image");
 
-        const rocketName = await getRocketNameById(id);
-        const rocketMoreInfo = await getRocketMoreInfoById(id);
-        const infotable1 = await getRocketInfoTable1(id);
-        const enginestable = await getRocketEngines(id);
-        const stages = await getRocketsStage(id);
-        const images = await getRocketImages(id);
-        const thrust = await getThrustRocket(id);
-        const measures = await getMeasuresRocket(id);
+    clearContainer(".section__information__1");
+    clearContainer(".information__table__1");
+    clearContainer(".information__table__2");
+    clearContainer(".section__image");
 
-        await nameRocket(rocketName);
-        await moreInfoRocket(rocketMoreInfo);
-        await RocketsStages(stages, infotable1, enginestable);
-        await imagesRockets(images);
-        await thrustRocket(thrust);
-        await measuresRocket(measures);
-    } catch (error) {
-        console.error("Error loading rocket data:", error);
-    }
+    const rocketName = await getRocketNameById(id);
+    const rocketMoreInfo = await getRocketMoreInfoById(id);
+    const infotable1 = await getRocketInfoTable1(id);
+    const enginestable = await getRocketEngines(id);
+    const stages = await getRocketsStage(id);
+    const images = await getRocketImages(id);
+    const thrust = await getThrustRocket(id);
+    const measures = await getMeasuresRocket(id);
+
+    await nameRocket(rocketName);
+    await moreInfoRocket(rocketMoreInfo);
+    await RocketsStages(stages, infotable1, enginestable);
+    await imagesRockets(images);
+    await thrustRocket(thrust);
+    await measuresRocket(measures);
 }
 
 // Capsules
 export const paginationCapsules = async () => {
-    try {
-        const capsules = await getAllCapsulesId();
-        renderPagination(capsules.length, 'capsules'); 
 
-        const paginationElement = document.querySelector("#paginacion");
-        paginationElement.addEventListener("click", async (e) => {
-            e.preventDefault();
-            if (e.target.tagName === 'A') {
-                const id = e.target.dataset.id;
-                const type = e.target.dataset.type; 
-                if (id && type === 'capsules') {
-                    await loadCapsule(capsules[id].id);
-                }
+    const capsules = await getAllCapsulesId();
+    renderPagination(capsules.length, 'capsules'); 
+
+    const paginationElement = document.querySelector("#paginacion");
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'capsules') {
+                await loadCapsule(capsules[id].id);
             }
-        });
-
-        if (capsules.length > 0) {
-            await loadCapsule(capsules[0].id);
         }
-    } catch (error) {
-        console.error("Error fetching capsules:", error);
-        return "<p>Error loading capsules</p>";
+    });
+
+    if (capsules.length > 0) {
+        await loadCapsule(capsules[0].id);
     }
 }
 
 const loadCapsule = async (id) => {
-    try {
-        clearContainer(".section__information__1");
 
-        const capsuleInfo = await getAllInfoCapsules(id);
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
 
-        await AllinfoCapsules(capsuleInfo);
-    } catch (error) {
-        console.error("Error loading capsule data:", error);
+    const capsuleInfo = await getAllInfoCapsules(id);
+
+    await AllinfoCapsules(capsuleInfo);
+}
+
+// Crews
+export const paginationCrew = async () => {
+    const crew = await getAllCrewId();
+    console.log(crew.length) // son 10
+    renderPagination(crew.length, 'crew');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'crew') {
+                await loadCrew(crew[id].id);
+            }
+        }
+    });
+
+    if (crew.length > 0) {
+        await loadCrew(crew[0].id); 
     }
+}
+
+const loadCrew = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let crewInfo = await getAllInfoCrew(id);
+
+    await AllinfoCrew(crewInfo);
 }

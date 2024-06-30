@@ -3,8 +3,6 @@ export const clearContainer = (selector) => {
     const container = document.querySelector(selector);
     if (container) {
         container.innerHTML = '';
-    } else {
-        console.error(`Element ${selector} not found in DOM`);
     }
 }
 
