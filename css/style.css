@@ -759,6 +759,28 @@ body {
     border-radius: 80px;
 }
 
+#paginacion button {
+    padding: 10px 15px;
+    background-color: var(--color-4);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#paginacion button:disabled {
+    background-color: var(--color-4);
+}
+
+#paginacion button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+#paginacion img {
+    width: 30px;
+    height: 30px;
+}
 .information__container {
     display: flex;
     gap: 5px;

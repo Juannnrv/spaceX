@@ -1,4 +1,4 @@
-import { paginationCapsules, paginationRockets, setUpPaginationCapsules, setupPaginationRockets } from "./components/paginación.js";
+import { paginationCapsules, paginationRockets } from "./components/paginación.js";
 import { clearInformation } from "./components/clear.js"; 
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -8,17 +8,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     rocketElement.addEventListener("click", handleRocketClick);
     capsulesElement.addEventListener("click", handleCapsulesClick);
 
-    await handleRocketClick();
+    await handleRocketClick(); 
 });
 
 const handleRocketClick = async () => {
     clearInformation();
-    document.querySelector("#paginacion").innerHTML = await paginationRockets();
-    setupPaginationRockets();
+    await paginationRockets(); 
 }
 
 const handleCapsulesClick = async () => {
     clearInformation();
-    document.querySelector("#paginacion").innerHTML = await paginationCapsules();
-    setUpPaginationCapsules();
+    await paginationCapsules(); 
 }
