@@ -1,5 +1,5 @@
 import { paginationCapsules, paginationRockets } from "./components/paginación.js";
-import { clearInformation } from "./components/clear.js"; 
+import { clearInformation } from "./components/clear.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const rocketElement = document.querySelector("#rocket");
@@ -8,15 +8,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     rocketElement.addEventListener("click", handleRocketClick);
     capsulesElement.addEventListener("click", handleCapsulesClick);
 
-    await handleRocketClick(); 
+    await handleRocketClick();
 });
 
 const handleRocketClick = async () => {
     clearInformation();
-    await paginationRockets(); 
+    await paginationRockets();
 }
 
 const handleCapsulesClick = async () => {
     clearInformation();
-    await paginationCapsules(); 
+    await paginationCapsules();
 }

@@ -13,6 +13,7 @@ export const clearInformation = () => {
     clearContainer(".information__item")
     clearContainer(".section__image");
     clearContainer("#paginacion");
+    clearContainer(".paginacion");
 
     const elementsToResetClasses = [
         "#header__title",
@@ -24,7 +25,8 @@ export const clearInformation = () => {
         ".information__item",
         // ".information__table__2",
         ".section__image",
-        "#paginacion"
+        "#paginacion",
+        ".paginacion"
     ];
 
     elementsToResetClasses.forEach(selector => {

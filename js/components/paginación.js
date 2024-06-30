@@ -1,14 +1,15 @@
 import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
+import { AllinfoCapsules } from "./capsules.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 
 let currentPage = 0;
 const itemsPerPage = 4;
 
-const renderPagination = (totalItems) => {
+const renderPagination = (totalItems, type) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     const paginationElement = document.querySelector("#paginacion");
-    paginationElement.innerHTML = ''; 
+    paginationElement.innerHTML = '';
 
     const start = currentPage * itemsPerPage;
     const end = start + itemsPerPage;
@@ -16,7 +17,8 @@ const renderPagination = (totalItems) => {
         const page = document.createElement('a');
         page.href = "#";
         page.textContent = i + 1;
-        page.dataset.id = i; 
+        page.dataset.id = i;
+        page.dataset.type = type; 
         paginationElement.appendChild(page);
     }
 
@@ -24,25 +26,33 @@ const renderPagination = (totalItems) => {
     const img1 = document.createElement('img');
     img1.setAttribute('class', 'left');
     img1.setAttribute('src', './storage/img/left.png');
-    prevButton.appendChild(img1); 
+    prevButton.appendChild(img1);
     prevButton.disabled = currentPage === 0;
     prevButton.onclick = () => {
         if (currentPage > 0) {
             currentPage--;
-            renderPagination(totalItems);
+            if (type === 'rockets') {
+                paginationRockets();
+            } else if (type === 'capsules') {
+                paginationCapsules();
+            }
         }
     };
 
     const nextButton = document.createElement('button');
     const img2 = document.createElement('img');
-    img2.setAttribute('class', 'right'); // 
+    img2.setAttribute('class', 'right');
     img2.setAttribute('src', './storage/img/right.png');
-    nextButton.appendChild(img2); 
+    nextButton.appendChild(img2);
     nextButton.disabled = currentPage >= totalPages - 1;
     nextButton.onclick = () => {
         if (currentPage < totalPages - 1) {
             currentPage++;
-            renderPagination(totalItems);
+            if (type === 'rockets') {
+                paginationRockets();
+            } else if (type === 'capsules') {
+                paginationCapsules();
+            }
         }
     };
 
@@ -54,14 +64,15 @@ const renderPagination = (totalItems) => {
 export const paginationRockets = async () => {
     try {
         const rockets = await getAllRocketsId();
-        renderPagination(rockets.length);
+        renderPagination(rockets.length, 'rockets'); 
 
         const paginationElement = document.querySelector("#paginacion");
         paginationElement.addEventListener("click", async (e) => {
             e.preventDefault();
             if (e.target.tagName === 'A') {
                 const id = e.target.dataset.id;
-                if (id) {
+                const type = e.target.dataset.type; 
+                if (id && type === 'rockets') {
                     await loadRocket(rockets[id].id);
                 }
             }
@@ -78,7 +89,7 @@ export const paginationRockets = async () => {
 
 const loadRocket = async (id) => {
     try {
-        clearContainer(".section__information__1"); 
+        clearContainer(".section__information__1");
         clearContainer(".information__table__1");
         clearContainer(".information__table__2");
         clearContainer(".section__image");
@@ -107,14 +118,15 @@ const loadRocket = async (id) => {
 export const paginationCapsules = async () => {
     try {
         const capsules = await getAllCapsulesId();
-        renderPagination(capsules.length);
+        renderPagination(capsules.length, 'capsules'); 
 
         const paginationElement = document.querySelector("#paginacion");
         paginationElement.addEventListener("click", async (e) => {
             e.preventDefault();
             if (e.target.tagName === 'A') {
                 const id = e.target.dataset.id;
-                if (id) {
+                const type = e.target.dataset.type; 
+                if (id && type === 'capsules') {
                     await loadCapsule(capsules[id].id);
                 }
             }
@@ -131,8 +143,10 @@ export const paginationCapsules = async () => {
 
 const loadCapsule = async (id) => {
     try {
+        clearContainer(".section__information__1");
+
         const capsuleInfo = await getAllInfoCapsules(id);
-        clearContainer(".section__information__1");  
+
         await AllinfoCapsules(capsuleInfo);
     } catch (error) {
         console.error("Error loading capsule data:", error);
