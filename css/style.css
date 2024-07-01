@@ -1053,6 +1053,10 @@ progress[value]::-moz-progress-bar {
     width: 50px;
     border-radius: 0;
 }
+.data__item__text_crew {
+    display: flex;
+    flex-direction: column;
+}
 .data__item__text_crew p{
     color: var(--color-3);
     letter-spacing: 2px;
@@ -1061,6 +1065,7 @@ progress[value]::-moz-progress-bar {
 }
 .data__item__text_crew span{
     color: var(--color-4);
+    margin-bottom: 10px;
 }
 .data__item__text_crew a {
     color: var(--color-4);
@@ -1089,7 +1094,7 @@ progress[value]::-moz-progress-bar {
     gap: 10px;
 }
 .Launches_data h4 {
-    color: var(--color-4);
+    color: var(--color-3);
     margin-bottom: 5px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -1182,4 +1187,37 @@ progress[value]::-moz-progress-bar {
     position: absolute;
     top: 44%;
     left: 40%;
+}
+
+.landpad_left {
+    position: absolute;
+    top: 5%;
+}
+
+.landpad_info1 {
+    position: absolute;
+    top: 2%;
+    left: 9%;
+}
+
+.Landpad_img {
+    position: absolute;
+    top: 44%;
+    left: 40%;
+}
+
+#landpad_launches {
+    overflow-y: scroll;
+    height: 70vh;
+}
+
+#landpad_detail {
+    overflow-y: scroll;
+    height: 70vh;
+}
+
+.landpad_info2 {
+    position: absolute;
+    top: 2%;
+    right: 0%;
 }

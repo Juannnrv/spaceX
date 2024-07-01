@@ -1,11 +1,13 @@
 import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
 import { getAllCoresId, getAllInfoCores } from "../modules/coresinfo.js";
 import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
+import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { AllinfoCapsules } from "./capsules.js";
 import { AllinfoCores } from "./cores.js";
 import { AllinfoCrew } from "./crew.js";
+import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 
@@ -51,6 +53,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'cores') {
                 paginationCores();
             }
+            else if ( type === 'landpads') {
+                paginationLandpads();
+            }
         }
     };
 
@@ -76,6 +81,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'cores') {
                 paginationCores();
+            }
+            else if ( type === 'landpads') {
+                paginationLandpads();
             }
         }
     };
@@ -269,4 +277,39 @@ const loadCore = async (id) => {
     let coreInfo = await getAllInfoCores(id);
 
     await AllinfoCores(coreInfo);
+}
+
+// Landpads
+export const paginationLandpads = async () => {
+    const landpads = await getAllLandpadId();
+    renderPagination(landpads.length, 'landpads');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'landpads') {
+                await loadLandpad(landpads[id].id);
+            }
+        }
+    });
+
+    if (landpads.length > 0) {
+        await loadLandpad(landpads[0].id); 
+    }
+}
+
+const loadLandpad = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let landpadInfo = await getAllInfoLandpad(id);
+
+    await AllInfoLandpads(landpadInfo);
 }
