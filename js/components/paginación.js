@@ -1,8 +1,10 @@
 import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
+import { getAllCoresId, getAllInfoCores } from "../modules/coresinfo.js";
 import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { AllinfoCapsules } from "./capsules.js";
+import { AllinfoCores } from "./cores.js";
 import { AllinfoCrew } from "./crew.js";
 import { AllInfoLaunches } from "./launches.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
@@ -46,6 +48,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'launches') {
                 paginationLaunches();
             }
+            else if ( type === 'cores') {
+                paginationCores();
+            }
         }
     };
 
@@ -69,31 +74,14 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'launches') {
                 paginationLaunches();
             }
+            else if ( type === 'cores') {
+                paginationCores();
+            }
         }
     };
 
     paginationElement.insertBefore(prevButton, paginationElement.firstChild);
     paginationElement.appendChild(nextButton);
-};
-
-
-const updatePagination = (type) => {
-    switch (type) {
-        case 'rockets':
-            paginationRockets();
-            break;
-        case 'capsules':
-            paginationCapsules();
-            break;
-        case 'crew':
-            paginationCrew();
-            break;
-        case 'launches':
-            paginationLaunches();
-            break;
-        default:
-            console.error('Tipo de paginación desconocido:', type);
-    }
 };
 
 // Rockets
@@ -246,4 +234,39 @@ const loadLaunch = async (id) => {
     let launchesInfo = await getAllInfoLaunches(id);
 
     await AllInfoLaunches(launchesInfo);
+}
+
+// Cores 
+export const paginationCores = async () => {
+    const cores = await getAllCoresId();
+    renderPagination(cores.length, 'cores');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'cores') {
+                await loadCore(cores[id].id);
+            }
+        }
+    });
+
+    if (cores.length > 0) {
+        await loadCore(cores[0].id); 
+    }
+}
+
+const loadCore = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let coreInfo = await getAllInfoCores(id);
+
+    await AllinfoCores(coreInfo);
 }
