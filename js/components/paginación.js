@@ -4,12 +4,14 @@ import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
 import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
+import { getAllInfoShips, getAllShipId } from "../modules/shipsinfo.js";
 import { AllinfoCapsules } from "./capsules.js";
 import { AllinfoCores } from "./cores.js";
 import { AllinfoCrew } from "./crew.js";
 import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
+import { AllInfoShips } from "./ships.js";
 
 let currentPage = 0;
 const itemsPerPage = 5;
@@ -56,6 +58,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'landpads') {
                 paginationLandpads();
             }
+            else if ( type === 'ships') {
+                paginationShips();
+            }
         }
     };
 
@@ -84,6 +89,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'landpads') {
                 paginationLandpads();
+            }
+            else if ( type === 'ships') {
+                paginationShips();
             }
         }
     };
@@ -312,4 +320,39 @@ const loadLandpad = async (id) => {
     let landpadInfo = await getAllInfoLandpad(id);
 
     await AllInfoLandpads(landpadInfo);
+}
+
+// Ships
+export const paginationShips = async () => {
+    const ships = await getAllShipId();
+    renderPagination(ships.length, 'ships');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'ships') {
+                await loadShip(ships[id].id);
+            }
+        }
+    });
+
+    if (ships.length > 0) {
+        await loadShip(ships[0].id); 
+    }
+}
+
+const loadShip = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let shipInfo = await getAllInfoShips(id);
+
+    await AllInfoShips(shipInfo);
 }

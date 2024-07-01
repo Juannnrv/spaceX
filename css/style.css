@@ -947,6 +947,11 @@ progress[value]::-moz-progress-bar {
 .data__item__text span {
     color: var(--color-4);
 }
+.data__item__text a{
+    color: var(--color-4);
+    text-decoration: none;
+    font-weight: bold;
+}
 
 .capsule_id {
     display: flex;
@@ -1220,4 +1225,33 @@ progress[value]::-moz-progress-bar {
     position: absolute;
     top: 2%;
     right: 0%;
+}
+
+#ship_numbers {
+    position: absolute;
+    top: 0%;
+    right: 61%;
+    padding: 10px 25px; 
+}
+
+#ship_info {
+    position: absolute;
+    top: 0%;
+    width: 68%;
+    left: 68%;
+}
+
+#ship_link {
+    position: absolute;
+    top: 20%;
+    right: 0%;
+    padding: 15px;
+}
+
+#gengar2 {
+    position: absolute;
+    top: 40%;
+    right: 2%;
+    width: 20%;
+
 }
