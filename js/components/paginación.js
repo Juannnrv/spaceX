@@ -1,8 +1,10 @@
 import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
 import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
+import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { AllinfoCapsules } from "./capsules.js";
 import { AllinfoCrew } from "./crew.js";
+import { AllInfoLaunches } from "./launches.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 
 let currentPage = 0;
@@ -41,6 +43,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'crew') {
                 paginationCrew();
             }
+            else if ( type === 'launches') {
+                paginationLaunches();
+            }
         }
     };
 
@@ -61,6 +66,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'crew') {
                 paginationCrew();
             }
+            else if ( type === 'launches') {
+                paginationLaunches();
+            }
         }
     };
 
@@ -68,9 +76,29 @@ const renderPagination = (totalItems, type) => {
     paginationElement.appendChild(nextButton);
 };
 
+
+const updatePagination = (type) => {
+    switch (type) {
+        case 'rockets':
+            paginationRockets();
+            break;
+        case 'capsules':
+            paginationCapsules();
+            break;
+        case 'crew':
+            paginationCrew();
+            break;
+        case 'launches':
+            paginationLaunches();
+            break;
+        default:
+            console.error('Tipo de paginación desconocido:', type);
+    }
+};
+
 // Rockets
 export const paginationRockets = async () => {
-
+    currentPage = 0;
     const rockets = await getAllRocketsId();
     renderPagination(rockets.length, 'rockets'); 
 
@@ -117,7 +145,6 @@ const loadRocket = async (id) => {
 
 // Capsules
 export const paginationCapsules = async () => {
-
     const capsules = await getAllCapsulesId();
     renderPagination(capsules.length, 'capsules'); 
 
@@ -154,7 +181,6 @@ const loadCapsule = async (id) => {
 // Crews
 export const paginationCrew = async () => {
     const crew = await getAllCrewId();
-    console.log(crew.length) // son 10
     renderPagination(crew.length, 'crew');
 
     const paginationElement = document.querySelector("#paginacion");
@@ -185,4 +211,39 @@ const loadCrew = async (id) => {
     let crewInfo = await getAllInfoCrew(id);
 
     await AllinfoCrew(crewInfo);
+}
+
+// Launches
+export const paginationLaunches = async () => {
+    const launches = await getAllLaunchesId();
+    renderPagination(launches.length, 'launches');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'launches') {
+                await loadLaunch(launches[id].id);
+            }
+        }
+    });
+
+    if (launches.length > 0) {
+        await loadLaunch(launches[0].id); 
+    }
+}
+
+const loadLaunch = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let launchesInfo = await getAllInfoLaunches(id);
+
+    await AllInfoLaunches(launchesInfo);
 }

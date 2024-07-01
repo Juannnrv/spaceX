@@ -978,8 +978,8 @@ progress[value]::-moz-progress-bar {
     flex-direction: column;
     margin: 0 50px;
     padding: 5px;
-    background-color: var(--color-1-rgba);
-    border: 5px solid var(--color-3);
+    background-color: var(--color-2);
+    border: 5px solid var(--color-1);
     height: 22vh;
 }
 
@@ -994,8 +994,8 @@ progress[value]::-moz-progress-bar {
     margin: 0 auto;
     width: 95%;
     height: 5px;
-    background-color: var(--color-3);
-    border: var(--color-3);
+    background-color: var(--color-1);
+    border: var(--color-1);
     border-collapse: collapse;
     margin-bottom: 5px;
 }
@@ -1071,4 +1071,98 @@ progress[value]::-moz-progress-bar {
     position: absolute;
     top: 44%;
     left: 37%;
+}
+
+.launch_left {
+    position: absolute;
+    top: 20%;
+    left: 8%;
+}
+.Launches_data {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 50px 50px;
+    padding: 15px;
+    background-color: var(--color-2);
+    border: 5px solid var(--color-1);
+    gap: 10px;
+}
+.Launches_data h4 {
+    color: var(--color-4);
+    margin-bottom: 5px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.Launches_data hr{
+    margin: 0 auto;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-1);
+    border: var(--color-1);
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+.launches_info {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 50px 50px;
+    padding: 25px;
+    background-color: var(--color-2);
+    border: 5px solid var(--color-1);
+}
+.launches_info_item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 0 0 20px 17px;
+}
+
+.launches_info_item p {
+    color: var(--color-3);
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.launches_info_item span {
+    color: var(--color-4);
+}
+
+.launch_right {
+    position: absolute;
+    top: 20%;
+    right: 0%;
+    width: 40%;
+}
+
+.launch_payloads {
+    display: flex;
+    flex-direction: column;
+}
+
+.Launches_detail {
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 50px 50px;
+    padding: 25px;
+    background-color: var(--color-2);
+    border: 5px solid var(--color-1);
+}
+
+.Launches_detail h4 {
+    color: var(--color-3);
+    margin-bottom: 5px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.Launches_detail p {
+    color: var(--color-4);
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.launch_image {
+    position: absolute;
+    top: 44%;
+    left: 39%;
 }
