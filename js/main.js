@@ -1,4 +1,4 @@
-import { paginationCapsules, paginationCores, paginationCrew, paginationLandpads, paginationLaunches, paginationRockets, paginationShips } from "./components/paginación.js";
+import { paginationCapsules, paginationCompany, paginationCores, paginationCrew, paginationLandpads, paginationLaunches, paginationRockets, paginationShips } from "./components/paginación.js";
 import { clearInformation } from "./components/clear.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const coresElement = document.querySelector("#cores");
     const landpadsElement = document.querySelector("#landspads");
     const shipsElement = document.querySelector("#ships");
+    const companyElement = document.querySelector("#company");
 
     rocketElement.addEventListener("click", handleRocketClick);
     capsulesElement.addEventListener("click", handleCapsulesClick);
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     coresElement.addEventListener("click", handleCoresClick);
     landpadsElement.addEventListener("click", handleLandpadsClick);
     shipsElement.addEventListener("click", handleShipsClick);
+    companyElement.addEventListener("click", handleCompanyClick);
 
     await handleRocketClick();
 });
@@ -54,4 +56,9 @@ const handleLandpadsClick = async () => {
 const handleShipsClick = async () => {
     clearInformation();
     await paginationShips();
+}
+
+const handleCompanyClick = async () => {
+    clearInformation();
+    await paginationCompany();
 }

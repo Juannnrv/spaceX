@@ -1,4 +1,5 @@
 import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js";
+import { getCompanyinfo } from "../modules/companyinfo.js";
 import { getAllCoresId, getAllInfoCores } from "../modules/coresinfo.js";
 import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
 import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
@@ -6,6 +7,7 @@ import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { getAllInfoShips, getAllShipId } from "../modules/shipsinfo.js";
 import { AllinfoCapsules } from "./capsules.js";
+import { companyInfo } from "./company.js";
 import { AllinfoCores } from "./cores.js";
 import { AllinfoCrew } from "./crew.js";
 import { AllInfoLandpads } from "./landpads.js";
@@ -61,6 +63,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'ships') {
                 paginationShips();
             }
+            else if ( type === 'company') {
+                paginationCompany();
+            }
         }
     };
 
@@ -92,6 +97,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'ships') {
                 paginationShips();
+            }
+            else if ( type === 'company') {
+                paginationCompany();
             }
         }
     };
@@ -355,4 +363,20 @@ const loadShip = async (id) => {
     let shipInfo = await getAllInfoShips(id);
 
     await AllInfoShips(shipInfo);
+}
+
+// Company
+export const paginationCompany = async () => {
+    const company = await getCompanyinfo();
+    await loadCompany(company); 
+}
+
+const loadCompany = async (company) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    await companyInfo(company);
 }

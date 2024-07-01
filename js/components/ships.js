@@ -88,6 +88,7 @@ export const AllInfoShips = async (shipInfo) => {
     <div id="ship_info" class="landpad_info1">
         <div class="Launches_data">
             <div class="data__item_crew">
+                <img src="${statusSrc}">
                 <div class="data__item__text_crew">
                     <p>STATUS</p>
                     <span>${status}</span>
@@ -100,6 +101,7 @@ export const AllInfoShips = async (shipInfo) => {
                 </div>
             </div>
             <div class="data__item_crew">
+                <img src="./storage/img/ship.png">
                 <div class="data__item__text_crew">
                     <p>ROLES</p>
                     ${roles}
@@ -112,6 +114,7 @@ export const AllInfoShips = async (shipInfo) => {
                 </div>
             </div>
             <div class="data__item_crew">
+            <img src="./storage/img/port.png">
                 <div class="data__item__text_crew">
                     <p>HOME PORT</p>
                     <span>${shipInfo.home_port}</span>
