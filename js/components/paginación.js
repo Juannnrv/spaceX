@@ -2,6 +2,7 @@ import { getAllCapsulesId, getAllInfoCapsules } from "../modules/capsulesinfo.js
 import { getCompanyinfo } from "../modules/companyinfo.js";
 import { getAllCoresId, getAllInfoCores } from "../modules/coresinfo.js";
 import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
+import { getAllDragonsId, getAllInfoDragons } from "../modules/dragonsinfo.js";
 import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
@@ -10,6 +11,7 @@ import { AllinfoCapsules } from "./capsules.js";
 import { companyInfo } from "./company.js";
 import { AllinfoCores } from "./cores.js";
 import { AllinfoCrew } from "./crew.js";
+import { dragonsInfo } from "./dragons.js";
 import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
@@ -66,6 +68,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'company') {
                 paginationCompany();
             }
+            else if ( type === 'dragons') {
+                paginationDragons();
+            }
         }
     };
 
@@ -100,6 +105,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'company') {
                 paginationCompany();
+            }
+            else if ( type === 'dragons') {
+                paginationDragons();
             }
         }
     };
@@ -379,4 +387,39 @@ const loadCompany = async (company) => {
     clearContainer(".section__image");
 
     await companyInfo(company);
+}
+
+// Dragons 
+export const paginationDragons = async () => {
+    const dragons = await getAllDragonsId();
+    renderPagination(dragons.length, 'dragons');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'dragons') {
+                await loadDragon(dragons[id].id);
+            }
+        }
+    });
+
+    if (dragons.length > 0) {
+        await loadDragon(dragons[0].id); 
+    }
+}
+
+const loadDragon = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let dragonInfo = await getAllInfoDragons(id);
+
+    await dragonsInfo(dragonInfo);
 }
