@@ -1552,3 +1552,20 @@ progress[value]::-moz-progress-bar {
     width: 23%;
     right: 1%;
 }
+
+#payload_left {
+    width: 30%;
+    height: 55vh;
+    top: 15%;
+    left: 5%;
+}
+
+#payload_right {
+    width: 31%;
+    height: 55vh;
+    position: absolute;
+    top: 16%;
+    right: -5%;
+    padding: 15px;
+    border-radius: 40px 0 0 40px;
+}

@@ -7,6 +7,7 @@ import { getAllHistoryId, getHistoryInfo } from "../modules/historyinfo.js";
 import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllInfoLaunchpads, getAllLaunchpadsId } from "../modules/launchpadsinfo.js";
+import { getAllInfoPayloads, getAllPayloadsId } from "../modules/payloadsinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { getAllInfoShips, getAllShipId } from "../modules/shipsinfo.js";
 import { AllinfoCapsules } from "./capsules.js";
@@ -18,6 +19,7 @@ import { historyAllInfo } from "./history.js";
 import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
 import { AllInfoLanchpads } from "./launchpads.js";
+import { AllInfoPayloads } from "./payloads.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 import { AllInfoShips } from "./ships.js";
 
@@ -81,6 +83,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'lanchpad') {
                 paginationLaunchpad();
             }
+            else if ( type === 'payloads') {
+                paginationPayloads();
+            }
         }
     };
 
@@ -124,6 +129,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'lanchpad') {
                 paginationLaunchpad();
+            }
+            else if ( type === 'payloads') {
+                paginationPayloads();
             }
         }
     };
@@ -508,4 +516,39 @@ const loadLanchpad = async (id) => {
     let lanchpadInfo = await getAllInfoLaunchpads(id);
 
     await AllInfoLanchpads(lanchpadInfo);
+}
+
+// Payloads
+export const paginationPayloads = async () => {
+    const payloads = await getAllPayloadsId();
+    renderPagination(payloads.length, 'payloads');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'payloads') {
+                await loadPayload(payloads[id].id);
+            }
+        }
+    });
+
+    if (payloads.length > 0) {
+        await loadPayload(payloads[0].id); 
+    }
+}
+
+const loadPayload = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let payloadInfo = await getAllInfoPayloads(id);
+
+    await AllInfoPayloads(payloadInfo);
 }

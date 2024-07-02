@@ -33,7 +33,7 @@ export const getAllInfoPayloads = async (id) => {
                 "_id": id
             },
             "options": {
-                "select": "name type reused launch mass_kg orbit"
+                "select": ""
             }
         })
     };
