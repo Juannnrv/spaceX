@@ -946,6 +946,7 @@ progress[value]::-moz-progress-bar {
 }
 .data__item__text span {
     color: var(--color-4);
+    font-weight: bold;
 }
 .data__item__text a{
     color: var(--color-4);
@@ -1479,4 +1480,73 @@ progress[value]::-moz-progress-bar {
     left: 6%;
     width: 30%;
     border-radius: 40px;
+}
+
+#description_launchpad {
+    position: absolute;
+    top: 12%;
+    margin-left: 10px;
+    max-height: 80vh;
+    overflow-y: scroll;
+    width: 17%;
+}
+
+#description_launchpad hr {
+    margin: 0 auto;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-1);
+    border: var(--color-1);
+    border-collapse: collapse;
+}
+
+#num_launchpad {
+    position: absolute;
+    top: 22%;
+    left: 7%;
+    padding: 40px 0 0;
+    border-radius: 0px;
+    width: 30%; 
+    height: 40vh;
+}
+
+#lanchpad_data {
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    padding: 20px;
+    border-radius: 40px 0 0 40px;
+    width: 20%; 
+    height: 74vh;
+    overflow-y: scroll;
+}
+
+#lanchpad_data h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#launchpad_rockets {
+    padding: 20px;
+}
+
+#launchpad_rockets h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#launchpad_right {
+    position: absolute;
+    top: 23%;
+    right: -7%;
+    width: 35%;
+    padding: 25px 0;
+}
+
+
+.launchpad_img {
+    position: absolute;
+    left: 39%;
 }

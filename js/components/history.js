@@ -25,7 +25,7 @@ export const historyAllInfo = async (historyInfo) => {
 
     document.querySelector(".description__item").innerHTML = /*html*/`
     <div id="description_history" class="description_dragon">
-        <h4>DESCRIPTION</h4>
+        <h4>DETAILS</h4>
         <hr>
         <p>${historyInfo.details}</p>
         <div class="data__item_crew">

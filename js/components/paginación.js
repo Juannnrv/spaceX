@@ -6,6 +6,7 @@ import { getAllDragonsId, getAllInfoDragons } from "../modules/dragonsinfo.js";
 import { getAllHistoryId, getHistoryInfo } from "../modules/historyinfo.js";
 import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
+import { getAllInfoLaunchpads, getAllLaunchpadsId } from "../modules/launchpadsinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { getAllInfoShips, getAllShipId } from "../modules/shipsinfo.js";
 import { AllinfoCapsules } from "./capsules.js";
@@ -16,6 +17,7 @@ import { dragonsInfo } from "./dragons.js";
 import { historyAllInfo } from "./history.js";
 import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
+import { AllInfoLanchpads } from "./launchpads.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 import { AllInfoShips } from "./ships.js";
 
@@ -76,6 +78,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'history') {
                 paginationHistory();
             }
+            else if ( type === 'lanchpad') {
+                paginationLaunchpad();
+            }
         }
     };
 
@@ -116,6 +121,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'history') {
                 paginationHistory();
+            }
+            else if ( type === 'lanchpad') {
+                paginationLaunchpad();
             }
         }
     };
@@ -465,4 +473,39 @@ const loadHistory = async (id) => {
     let historyInfo = await getHistoryInfo(id);
 
     await historyAllInfo(historyInfo);
+}
+
+// Lanchpad
+export const paginationLaunchpad = async () => {
+    const lanchpad = await getAllLaunchpadsId();
+    renderPagination(lanchpad.length, 'lanchpad');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'lanchpad') {
+                await loadLanchpad(lanchpad[id].id);
+            }
+        }
+    });
+
+    if (lanchpad.length > 0) {
+        await loadLanchpad(lanchpad[0].id); 
+    }
+}
+
+const loadLanchpad = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let lanchpadInfo = await getAllInfoLaunchpads(id);
+
+    await AllInfoLanchpads(lanchpadInfo);
 }
