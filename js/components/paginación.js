@@ -8,6 +8,7 @@ import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllInfoLaunchpads, getAllLaunchpadsId } from "../modules/launchpadsinfo.js";
 import { getAllInfoPayloads, getAllPayloadsId } from "../modules/payloadsinfo.js";
+import { getAllInfoRoadster } from "../modules/roadsterinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { getAllInfoShips, getAllShipId } from "../modules/shipsinfo.js";
 import { AllinfoCapsules } from "./capsules.js";
@@ -20,6 +21,7 @@ import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
 import { AllInfoLanchpads } from "./launchpads.js";
 import { AllInfoPayloads } from "./payloads.js";
+import { AllInfoRoadster } from "./roadster.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 import { AllInfoShips } from "./ships.js";
 
@@ -86,6 +88,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'payloads') {
                 paginationPayloads();
             }
+            else if ( type === 'roadster') {
+                paginationRoadster();
+            }
         }
     };
 
@@ -132,6 +137,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'payloads') {
                 paginationPayloads();
+            }
+            else if ( type === 'roadster') {
+                paginationRoadster();
             }
         }
     };
@@ -551,4 +559,20 @@ const loadPayload = async (id) => {
     let payloadInfo = await getAllInfoPayloads(id);
 
     await AllInfoPayloads(payloadInfo);
+}
+
+// Roadster
+export const paginationRoadster = async () => {
+    const roadster = await getAllInfoRoadster();
+    await loadRoadster(roadster); 
+}
+
+const loadRoadster = async (roadsterinfo) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    await AllInfoRoadster(roadsterinfo);
 }

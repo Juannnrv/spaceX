@@ -11,6 +11,5 @@ export const getCompanyinfo = async () => {
 
     const res = await fetch(apiUrl, options);
     const data = await res.json();
-    console.log('Company info:', data);
     return data;
 }

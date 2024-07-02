@@ -1569,3 +1569,48 @@ progress[value]::-moz-progress-bar {
     padding: 15px;
     border-radius: 40px 0 0 40px;
 }
+
+.roadster_left {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-1-rgba);
+    padding: 20px;
+    border: var(--color-3) 5px solid;
+}
+
+.roadster_left h3{
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.roadster_left p {
+    color: var(--color-4);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.roadster_img {
+    position: absolute;
+    top: 45%;
+    left: 37%;
+}
+
+#num_roadster {
+    height: 70vh;
+    width: 35%;
+    position: absolute;
+}
+
+.gengar_4 {
+    position: absolute;
+    top: 6%;
+    right: -31%;
+    width: 27%;
+    height: 71%;
+    border-radius: 40px;
+}

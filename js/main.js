@@ -1,4 +1,4 @@
-import { paginationCapsules, paginationCompany, paginationCores, paginationCrew, paginationDragons, paginationHistory, paginationLandpads, paginationLaunches, paginationLaunchpad, paginationPayloads, paginationRockets, paginationShips } from "./components/paginación.js";
+import { paginationCapsules, paginationCompany, paginationCores, paginationCrew, paginationDragons, paginationHistory, paginationLandpads, paginationLaunches, paginationLaunchpad, paginationPayloads, paginationRoadster, paginationRockets, paginationShips } from "./components/paginación.js";
 import { clearInformation } from "./components/clear.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const historyElement = document.querySelector("#history");
     const launchpadsElement = document.querySelector("#launchpads");
     const payloadElement = document.querySelector("#payloads");
+    const roasterElement = document.querySelector("#roaster");
 
     rocketElement.addEventListener("click", handleRocketClick);
     capsulesElement.addEventListener("click", handleCapsulesClick);
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     historyElement.addEventListener("click", handleHistoryClick);
     launchpadsElement.addEventListener("click", handleLaunchpadsClick);
     payloadElement.addEventListener("click", handlePayloadsClick);
+    roasterElement.addEventListener("click", handleRoadsterClick);
 
     document.querySelectorAll('#buttons li a').forEach(item => {
         item.addEventListener('click', function(e) {
@@ -101,4 +103,9 @@ const handleLaunchpadsClick = async () => {
 const handlePayloadsClick = async () => {
     clearInformation();
     await paginationPayloads();
+}
+
+const handleRoadsterClick = async () => {
+    clearInformation();
+    await paginationRoadster();
 }
