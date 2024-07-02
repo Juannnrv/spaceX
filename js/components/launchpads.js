@@ -90,7 +90,7 @@ export const AllInfoLanchpads = async (launchpadInfo) => {
     </div>
     `;
 
-    document.querySelector(".section__image").innerHTML = /*html*/`<div class="launchpad_img"><img src=${launchpadInfo.images.large}></div>`;
+    document.querySelector(".section__image").innerHTML = /*html*/`<div class="launchpad_img"><img src=${launchpadInfo.images.large} referrerpolicy="no-referrer"></div>`;
 
     document.querySelector(".section__information__3").innerHTML = /*html*/`
     <div id="launchpad_right" class="data_capsules">

@@ -797,15 +797,12 @@ body {
     padding: 8px 16px;
 }
 
-.paginacion a.activo {
+.active {
     background-color: var(--color-3);
-    color: var(--color-4);
+    padding: 10px;
+    border-radius: 20px;
 }
 
-.paginacion a:hover:not(.activo) {
-    background-color: var(--color-3);
-    border-radius: 80px;
-}
 
 #paginacion button {
     padding: 10px 15px;

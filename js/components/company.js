@@ -89,7 +89,7 @@ export const companyInfo = async (companyInfo) => {
 
     document.querySelector(".section__image").innerHTML = /*html*/ `
     <div class="company_img">
-        <img src="./storage/img/spacex.gif">
+        <img src="./storage/img/spaceX.gif">
     </div>
     `;
 

@@ -26,6 +26,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     historyElement.addEventListener("click", handleHistoryClick);
     launchpadsElement.addEventListener("click", handleLaunchpadsClick);
 
+    // JavaScript
+    document.querySelectorAll('#buttons li a').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            document.querySelectorAll('#buttons li a').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            this.classList.add('active');
+        });
+    });
+
     await handleRocketClick();
 });
 
