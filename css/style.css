@@ -584,7 +584,7 @@ body {
 .section__information__3 div:first-child {
     grid-area: carusel__colum__2;
     display: flex;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     gap: 10px;
     /* justify-content: space-evenly; */
 }
@@ -1295,4 +1295,160 @@ progress[value]::-moz-progress-bar {
     height: 100%;
     position: relative;
     left: 10%;
+}
+
+.description_dragon {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+    position: absolute;
+    height: 95vh;
+    overflow-y: scroll;
+    top: 2%;
+    width: 18%;
+    padding: 25px;
+    background-color: var(--color-2);
+    border: 5px solid var(--color-1);
+    border-radius: 0 50px 50px 0;
+}
+
+.description_dragon h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.description_dragon hr {
+    margin: 0 auto;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-1);
+    border: var(--color-1);
+    border-collapse: collapse;
+}
+
+.description_dragon p {
+    color: var(--color-4);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.description_dragon a {
+    color: var(--color-4);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.data_dragon {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 0 50px 0;
+    position: absolute;
+    top: 42%;
+    left: 6%;
+    width: 30%;
+    padding: 25px;
+    background-color: var(--color-2);
+    border: 5px solid var(--color-1);
+
+}
+
+.gengar_dragon {
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    width: 30%;
+    border-radius: 50%;
+}
+
+.data_dragon h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.data_dragon p {
+    color: var(--color-4);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.data_dragon hr {
+    margin: 0 auto;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-1);
+    border: var(--color-1);
+    border-collapse: collapse;
+}
+
+.dragon_data {
+    width: 140%;
+    display: flex;
+    gap: 50px;
+    margin-bottom: 10px;
+}
+
+.dragon_data img {
+    width: 40px;
+    height: 40px;
+}
+
+.payload_dragon {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 0 50px 0;
+    position: absolute;
+    top: 5%;
+    right: 1%;
+    width: 35%;
+    padding: 25px;
+    background-color: var(--color-1-rgba);
+    border: 5px solid var(--color-3);
+}
+
+.payload_dragon h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.payload_dragon hr {
+    margin: 15px 0;
+    width: 95%;
+    height: 5px;
+    background-color: var(--color-1);
+    border: var(--color-1);
+    border-collapse: collapse;
+}
+
+.payload_dragon p {
+    color: var(--color-4);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#thrusters {
+    width: 20%;
+    overflow-y: scroll;
+    max-height: 80vh;
+    overflow-x: hidden;
+}
+
+.dragon_data__thruster {
+    display: flex;
+    gap: 20px;
+}
+
+
+.fuels_dragon {
+    margin-top: -10px;
+}
+
+#shield {
+    position: absolute;
+    top: 0%;
 }
