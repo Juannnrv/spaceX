@@ -1,3 +1,4 @@
+import { getLaunchesNameById } from "../modules/launchesinfo.js";
 import { getRocketNameById } from "../modules/rocketsInfo.js";
 
 export const AllInfoLanchpads = async (launchpadInfo) => {
@@ -61,13 +62,17 @@ export const AllInfoLanchpads = async (launchpadInfo) => {
     </div>
     `;
 
-    let launches = launchpadInfo.launches.map(launchId => `<span>${launchId}</span>`).join("");
-    launches = launches ? launches : "<span>No launches</span>";
+    let launchesIds = launchpadInfo.launches;
+    let launchesNames = await getLaunchesNameById(launchesIds);
+
+    let launches = launchesNames.map(launchName => /*html*/`<span>${launchName.name}</span> `).join('');
 
     // console.log(await getRocketNameById(launchpadInfo.rockets));
 
     // let rockets = launchpadInfo.rockets.map( rocketId => /*html*/ `<span>${rocketId}</span>` ).join("");
     // rockets = rockets ? rockets : "No rockets";
+    
+    let launchesNombres = launches ? /*html*/ `${launches}` : /*html*/ `<span>No launches</span>`;
 
     document.querySelector(".information__item").innerHTML = /*html*/`
     <div id="launchpad_rockets" class="data_capsules">
@@ -82,7 +87,7 @@ export const AllInfoLanchpads = async (launchpadInfo) => {
         <br>
         <div class="data__item">
             <div class="data__item__text">
-                ${launches}
+                ${launchesNombres}
             </div>
         </div>
         <br>

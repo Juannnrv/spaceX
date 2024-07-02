@@ -1,6 +1,14 @@
 
+import { getLaunchesNameById } from "../modules/launchesinfo.js";
+
 export const AllinfoCores = async (coreInfo) => {
-    console.log(coreInfo)
+    let launchesIds = coreInfo.launches;
+    let launchesNames = await getLaunchesNameById(launchesIds);
+    
+    let launches = launchesNames.map(launchName => /*html*/`<span>${launchName.name}</span> `).join('');
+    
+    let launchesNombres = launches ? /*html*/ `${launches}` : /*html*/ `<span>No launches</span>`;
+
     document.querySelector("#header__title").textContent = `Core ${coreInfo.serial}`;
 
     document.querySelector(".description__item").innerHTML = /*html*/ `
@@ -26,7 +34,7 @@ export const AllinfoCores = async (coreInfo) => {
                 <img src="./storage/img/spaceship.png">
                 <div class="data__item__text_crew">
                     <p>LAUNCHES</p>
-                    <span>${coreInfo.launches[0]}</span>
+                    ${launchesNombres}
                 </div>
             </div>
         </div>

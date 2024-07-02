@@ -1,8 +1,9 @@
+import { getLaunchpadsNameById } from "../modules/launchpadsinfo.js";
+import { getAllPayloadsNamesById } from "../modules/payloadsinfo.js";
 import { getRocketNameById } from "../modules/rocketsInfo.js";
 
 
 export const AllInfoLaunches = async (launchesInfo) => {
-    console.log(launchesInfo);
     
     document.querySelector("#header__title").innerHTML = /*html*/ `${launchesInfo.name}`;
     
@@ -80,8 +81,6 @@ export const AllInfoLaunches = async (launchesInfo) => {
         </div>
     `;
 
-    let payloadNames = launchesInfo.payloads.map(payloadId => /*html*/`<span>${payloadId}</span>`).join("");
-
     let details = "";
     if (launchesInfo.details == null) {
         details = "Confidential Information";
@@ -90,6 +89,20 @@ export const AllInfoLaunches = async (launchesInfo) => {
         details = launchesInfo.details;
     }
 
+    let launchpadId = launchesInfo.launchpad;
+    
+    let launchpads = await getLaunchpadsNameById(launchpadId);
+
+    let launchpadNombres = launchpads.name ? /*html*/ `<span>${launchpads.name}</span>` : /*html*/ `<span>No launchpad</span>`;
+
+    let payloadsIds = launchesInfo.payloads;
+    let payloadsNames = await getAllPayloadsNamesById(payloadsIds);
+
+    let payloads = payloadsNames.map(payloadName => /*html*/`<span>${payloadName.name}</span> `).join('');
+    
+    let payloadsNombres = payloads ? /*html*/ `${payloads}` : /*html*/ `<span>No payloads</span>`;
+
+    
     document.querySelector(".information__item").innerHTML = /*html*/`
     <div class="launch_right">
         <div class="Launches_data">
@@ -104,7 +117,7 @@ export const AllInfoLaunches = async (launchesInfo) => {
                 <img src="./storage/img/launchpad.png">
                 <div class="data__item__text_crew">
                     <p>Launchpad</p>
-                    <span>${launchesInfo.launchpad}</span>
+                    ${launchpadNombres}
                 </div>
             </div>
             <div class="data__item_crew">
@@ -112,7 +125,7 @@ export const AllInfoLaunches = async (launchesInfo) => {
                 <div class="data__item__text_crew">
                     <p>Payloads</p>
                     <div class="launch_payloads">
-                        ${payloadNames}
+                        ${payloadsNombres}
                     </div>
                 </div>
             </div>

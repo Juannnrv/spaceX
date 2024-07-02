@@ -1195,6 +1195,7 @@ progress[value]::-moz-progress-bar {
 .landpad_left {
     position: absolute;
     top: 5%;
+    width: 25%;
 }
 
 .landpad_info1 {
@@ -1542,8 +1543,12 @@ progress[value]::-moz-progress-bar {
     padding: 25px 0;
 }
 
-
 .launchpad_img {
     position: absolute;
     left: 39%;
+}
+
+#company_address {
+    width: 23%;
+    right: 1%;
 }

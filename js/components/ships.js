@@ -1,12 +1,14 @@
+import { getLaunchesNameById } from "../modules/launchesinfo.js";
 
 export const AllInfoShips = async (shipInfo) => {
 
     document.querySelector("#header__title").innerHTML = /*html*/ `${shipInfo.name}`;
 
-    let launches = shipInfo.launches.map( launchId => /*html*/ `
-        <span>${launchId}</span>
-        ` ).join("");
-        console.log(launches)
+    let launchesIds = shipInfo.launches;
+    let launchesNames = await getLaunchesNameById(launchesIds);
+    console.log(launchesNames.map(launch => launch.name)); 
+
+    let launches = launchesNames.map(launchName => /*html*/`<span>${launchName.name}</span> `).join('');
         
     document.querySelector(".description__item").innerHTML = /*html*/ `
     <div class="landpad_left">

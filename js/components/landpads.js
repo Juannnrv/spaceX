@@ -1,12 +1,15 @@
+import { getLaunchesNameById } from "../modules/launchesinfo.js";
 
 export const AllInfoLandpads = async (landpadInfo) => {
 
     document.querySelector("#header__title").innerHTML = /*html*/ `${landpadInfo.full_name}`;
 
-    let launches = landpadInfo.launches.map( launchId => /*html*/ `
-        <span>${launchId}</span>
-        ` ).join("");
-        console.log(launches)
+    let launchesIds = landpadInfo.launches;
+    let launchesNames = await getLaunchesNameById(launchesIds);
+
+    let launches = launchesNames.map(launchesName => /*html*/`<span>${launchesName.name}</span> `).join('');
+    
+    let launchesNombres = launches ? /*html*/ `${launches}` : /*html*/ `<span>No launches</span>`;
         
     document.querySelector(".description__item").innerHTML = /*html*/ `
     <div class="landpad_left">
@@ -15,7 +18,7 @@ export const AllInfoLandpads = async (landpadInfo) => {
             <hr>
             <div class="data__item_crew">
                 <div id="landpad_launches" class="data__item__text_crew">
-                    ${launches}
+                    ${launchesNombres}
                 </div>
             </div>
         </div>

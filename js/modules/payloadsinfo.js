@@ -1,7 +1,7 @@
 
-const apiUrl = "https://api.spacexdata.com/v4/launches/query";
+const apiUrl = "https://api.spacexdata.com/v4/payloads/query";
 
-export const getAllLaunchesId = async () => {
+export const getAllPayloadsId = async () => {
     const options = {
         method: 'POST',
         headers: {
@@ -21,7 +21,7 @@ export const getAllLaunchesId = async () => {
     return docs;
 }
 
-export const getAllInfoLaunches = async (id) => {
+export const getAllInfoPayloads = async (id) => {
     // console.log(id);
     const options = {
         method: 'POST',
@@ -33,7 +33,7 @@ export const getAllInfoLaunches = async (id) => {
                 "_id": id
             },
             "options": {
-                "select": "links.wikipedia links.article links.youtube_id name date_utc rocket success flight_number crew launchpad payloads details"
+                "select": "name type reused launch mass_kg orbit"
             }
         })
     };
@@ -44,7 +44,7 @@ export const getAllInfoLaunches = async (id) => {
     return docs[0];
 }
 
-export const getLaunchesNameById = async (ids) => {
+export const getAllPayloadsNamesById = async (ids) => {
     const promises = ids.map(async (id) => {
         const options = {
             method: 'POST',
@@ -63,8 +63,8 @@ export const getLaunchesNameById = async (ids) => {
         
         const res = await fetch(apiUrl, options);
         const { docs } = await res.json();
-        return docs[0]; 
+        return docs[0];
     });
-
+    
     return Promise.all(promises);
 }

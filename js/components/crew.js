@@ -1,10 +1,17 @@
+import { getLaunchesNameById } from "../modules/launchesinfo.js";
 
 export const AllinfoCrew = async (crewInfo) => {
     console.log(crewInfo);
     
     document.querySelector("#header__title").innerHTML = crewInfo.name;
 
+    let launchesIds = crewInfo.launches;
+    let launchesNames = await getLaunchesNameById(launchesIds);
     
+    let launches = launchesNames.map(launchName => /*html*/`<span>${launchName.name}</span> `).join('');
+    
+    let launchesNombres = launches ? /*html*/ `${launches}` : /*html*/ `<span>No launches</span>`;
+
     document.querySelector(".description__item").innerHTML = /*html*/`
     <div class="Astronaut_info">
         <h4>ASTRONAUT DATA</h4>
@@ -27,7 +34,7 @@ export const AllinfoCrew = async (crewInfo) => {
             <img src="./storage/img/cohete.png">
             <div class="data__item__text_crew">
                 <p>launches</p>
-                <span>${crewInfo.launches[0]}</span>
+                ${launchesNombres}
             </div>
         </div>
     </div>

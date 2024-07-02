@@ -37,3 +37,24 @@ export const getAllInfoLaunchpads = async (id) => {
     const { docs } = await res.json();
     return docs[0];
 }
+
+export const getLaunchpadsNameById = async (id) => {
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "query": {
+                "_id": id
+            },
+            "options": {
+                "select": "name"
+            }
+        })
+    };
+
+    const res = await fetch(apiUrl, options);
+    const { docs } = await res.json();
+    return docs[0];
+}
