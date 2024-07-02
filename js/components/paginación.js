@@ -3,6 +3,7 @@ import { getCompanyinfo } from "../modules/companyinfo.js";
 import { getAllCoresId, getAllInfoCores } from "../modules/coresinfo.js";
 import { getAllCrewId, getAllInfoCrew } from "../modules/crewinfo.js";
 import { getAllDragonsId, getAllInfoDragons } from "../modules/dragonsinfo.js";
+import { getAllHistoryId, getHistoryInfo } from "../modules/historyinfo.js";
 import { getAllInfoLandpad, getAllLandpadId } from "../modules/landpadsinfo.js";
 import { getAllInfoLaunches, getAllLaunchesId } from "../modules/launchesinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
@@ -12,6 +13,7 @@ import { companyInfo } from "./company.js";
 import { AllinfoCores } from "./cores.js";
 import { AllinfoCrew } from "./crew.js";
 import { dragonsInfo } from "./dragons.js";
+import { historyAllInfo } from "./history.js";
 import { AllInfoLandpads } from "./landpads.js";
 import { AllInfoLaunches } from "./launches.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
@@ -71,6 +73,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'dragons') {
                 paginationDragons();
             }
+            else if ( type === 'history') {
+                paginationHistory();
+            }
         }
     };
 
@@ -108,6 +113,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'dragons') {
                 paginationDragons();
+            }
+            else if ( type === 'history') {
+                paginationHistory();
             }
         }
     };
@@ -422,4 +430,39 @@ const loadDragon = async (id) => {
     let dragonInfo = await getAllInfoDragons(id);
 
     await dragonsInfo(dragonInfo);
+}
+
+// History
+export const paginationHistory = async () => {
+    const history = await getAllHistoryId();
+    renderPagination(history.length, 'history');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            const type = e.target.dataset.type; 
+            if (id && type === 'history') {
+                await loadHistory(history[id].id);
+            }
+        }
+    });
+
+    if (history.length > 0) {
+        await loadHistory(history[0].id); 
+    }
+}
+
+const loadHistory = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let historyInfo = await getHistoryInfo(id);
+
+    await historyAllInfo(historyInfo);
 }
