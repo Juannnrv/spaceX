@@ -1,7 +1,7 @@
 
-const apiUrl = "https://api.spacexdata.com/v4/crew/query";
+const apiUrl = "https://api.spacexdata.com/v4/starlink/query";
 
-export const getAllCrewId = async () => {
+export const getAllStarlinksId = async () => {
     const options = {
         method: 'POST',
         headers: {
@@ -14,16 +14,16 @@ export const getAllCrewId = async () => {
             }
         })
     };
-    
+
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    console.log(docs)
+    console.log(docs);
     return docs;
 }
 
-export const getAllInfoCrew = async (id) => {
-    console.log('id', id);
-
+export const getAllInformationStarlink = async (id) => {
+    console.log(id);
+    
     const options = {
         method: 'POST',
         headers: {
@@ -31,15 +31,15 @@ export const getAllInfoCrew = async (id) => {
         },
         body: JSON.stringify({
             "query": {
-                "_id": id
+                "_id": id.id
             },
             "options": {
             }
         })
     };
-    
+
     const res = await fetch(apiUrl, options);
     const { docs } = await res.json();
-    // console.log(docs[0])
+    console.log(docs);
     return docs[0];
 }

@@ -1614,3 +1614,94 @@ progress[value]::-moz-progress-bar {
     height: 71%;
     border-radius: 40px;
 }
+
+.spaceTrack {
+    position: absolute;
+    top: 4%;
+    left:2%;
+    width: 20%;
+    height: 85vh;
+    overflow-y: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--color-2);
+    border: var(--color-1) 5px solid;
+}
+
+.spaceTrack h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.spaceTrack hr {
+    width: 95%;
+}
+
+.spaceTrack p {
+    color: var(--color-4);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.orbital_elements {
+    position: absolute;
+    top: 4%;
+    right: 2%;
+    width: 25%;
+    height: 80vh;
+    overflow-y: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--color-1-rgba);
+    border: var(--color-3) 5px solid;
+}
+
+.orbital_elements h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.launch_starlink {
+    position: absolute;
+    top: 44%;
+    left: 36%;
+    width: 30%;
+    height: 40vh;
+    overflow-y: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--color-1-rgba);
+    border: var(--color-3) 5px solid;
+}
+
+.launch_starlink h4 {
+    color: var(--color-3);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.osha1 {
+    position: absolute;
+    top: 2%;
+    left: 15%;
+    width: 20%;
+    height: 35vh;
+    border-radius: 40px;
+}
+
+.osha2 {
+    position: absolute;
+    top: 2%;
+    right: 10%;
+    width: 20%;
+    height: 38vh;
+    border-radius: 40px;
+}

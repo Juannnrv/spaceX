@@ -11,6 +11,7 @@ import { getAllInfoPayloads, getAllPayloadsId } from "../modules/payloadsinfo.js
 import { getAllInfoRoadster } from "../modules/roadsterinfo.js";
 import { getAllRocketsId, getMeasuresRocket, getRocketEngines, getRocketImages, getRocketInfoTable1, getRocketMoreInfoById, getRocketNameById, getRocketsStage, getThrustRocket } from "../modules/rocketsInfo.js";
 import { getAllInfoShips, getAllShipId } from "../modules/shipsinfo.js";
+import { getAllInformationStarlink, getAllStarlinksId } from "../modules/starlinksinfo.js";
 import { AllinfoCapsules } from "./capsules.js";
 import { companyInfo } from "./company.js";
 import { AllinfoCores } from "./cores.js";
@@ -24,6 +25,7 @@ import { AllInfoPayloads } from "./payloads.js";
 import { AllInfoRoadster } from "./roadster.js";
 import { RocketsStages, moreInfoRocket, nameRocket, imagesRockets, thrustRocket, measuresRocket, clearContainer } from "./rockets.js";
 import { AllInfoShips } from "./ships.js";
+import { AllStarlinkInfo } from "./starlink.js";
 
 let currentPage = 0;
 const itemsPerPage = 5;
@@ -91,6 +93,9 @@ const renderPagination = (totalItems, type) => {
             else if ( type === 'roadster') {
                 paginationRoadster();
             }
+            else if ( type === 'starlink') {
+                paginationStarlink();
+            }
         }
     };
 
@@ -140,6 +145,9 @@ const renderPagination = (totalItems, type) => {
             }
             else if ( type === 'roadster') {
                 paginationRoadster();
+            }
+            else if ( type === 'starlink') {
+                paginationStarlink();
             }
         }
     };
@@ -575,4 +583,38 @@ const loadRoadster = async (roadsterinfo) => {
     clearContainer(".section__image");
 
     await AllInfoRoadster(roadsterinfo);
+}
+
+// Starlinks 
+export const paginationStarlink = async () => {
+    const starlinks = await getAllStarlinksId();
+    renderPagination(starlinks.length, 'starlinks');
+
+    const paginationElement = document.querySelector("#paginacion");
+
+    paginationElement.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const id = e.target.dataset.id;
+            if (id) {
+                await loadStarlink(starlinks[id]);
+            }
+        }
+    });
+
+    if (starlinks.length > 0) {
+        await loadStarlink(starlinks[0]);
+    }
+}
+
+const loadStarlink = async (id) => {
+    clearContainer("#header__title");
+    clearContainer(".section__information__1");
+    clearContainer(".section__information__2");
+    clearContainer(".section__information__3");
+    clearContainer(".section__image");
+
+    let starlinkInfo = await getAllInformationStarlink(id);
+
+    await AllStarlinkInfo(starlinkInfo);
 }
